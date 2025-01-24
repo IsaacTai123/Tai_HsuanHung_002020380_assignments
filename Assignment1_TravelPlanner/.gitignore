@@ -1,0 +1,25 @@
+# Ignore build files
+/build/
+nbproject/private/
+dist/
+manifest.mf
+
+# Ignore NetBeans-specific project files
+nbproject/genfiles.properties
+nbproject/private/
+nbproject/Makefile-*.mk
+nbproject/configs/
+
+# Ignore compiled class files
+*.class
+
+# Ignore logs, temporary files, and OS-generated files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Ignore IDE-specific settings
+.idea/
+.vscode/
+

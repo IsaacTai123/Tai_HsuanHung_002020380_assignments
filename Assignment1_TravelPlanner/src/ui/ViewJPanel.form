@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" alignment="0" pref="510" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel1" min="-2" pref="492" max="-2" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[520, 500]"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lbName" alignment="1" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="lbDestination" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="lbNotes" alignment="1" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="lbStartDate" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbEndDate" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbBudget" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbTravelerCount" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbTransportMode" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbAccommodation" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbEmergencyC" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtNotes" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="txtEmergencyC" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="txtTransportMode" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="txtTravelerCount" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="txtBudget" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="txtEndDate" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="txtStartDate" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="txtName" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtDestination" alignment="1" min="-2" pref="98" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="txtAccommodation" min="-2" pref="98" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lbStatus" alignment="1" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="lbTravelerEmail" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbTravelerPhone" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbBookingRef" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbExchangeRate" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbFavSpots" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbInsurance" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lbTripPurpose" alignment="1" max="32767" attributes="0"/>
+                          <Component id="lbPackingList" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="lbVisa" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtFavSpots" max="32767" attributes="0"/>
+                      <Component id="txtInsurance" max="32767" attributes="0"/>
+                      <Component id="txtPackingList" max="32767" attributes="0"/>
+                      <Component id="txtVisa" max="32767" attributes="0"/>
+                      <Component id="txtTripPurpose" max="32767" attributes="0"/>
+                      <Component id="txtTravelerEmail" pref="107" max="32767" attributes="0"/>
+                      <Component id="txtTravelerPhone" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtBookingRef" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtStatus" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtExchangeRate" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              </Group>
+              <Component id="lbTitle" alignment="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="lbTitle" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbEndDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEndDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbBudget" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtBudget" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbTravelerCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTravelerCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbTravelerEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTravelerEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbTravelerPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTravelerPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbBookingRef" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtBookingRef" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbExchangeRate" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtExchangeRate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbFavSpots" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFavSpots" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="lbTransportMode" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTransportMode" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbPackingList" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPackingList" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbInsurance" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtInsurance" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbAccommodation" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAccommodation" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbEmergencyC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEmergencyC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbNotes" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNotes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbTripPurpose" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTripPurpose" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbVisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtVisa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="76" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lbTitle">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="16" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Travel Profile"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="name:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtName">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbDestination">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="destination:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtDestination">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbStartDate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="startDate:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtStartDate">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbEndDate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="endDate:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtEndDate">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbBudget">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="budget:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtBudget">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbTravelerCount">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="travelerCount:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTravelerCount">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtExchangeRate">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbFavSpots">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="favoritiesSpots:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbTravelerEmail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="travelerEmail:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtFavSpots">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTravelerEmail">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbTravelerPhone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="travelerPhone:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTravelerPhone">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbBookingRef">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="bookingRef:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtBookingRef">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbStatus">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="status:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtStatus">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbExchangeRate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="exchangeRate:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtPackingList">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbInsurance">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="insurance:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbTransportMode">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="transportMode:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtInsurance">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTransportMode">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTransportModeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbAccommodation">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="accommodation:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbEmergencyC">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="emergencyContact:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtEmergencyC">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbNotes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="notes:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtNotes">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbPackingList">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="packingList:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTripPurpose">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbVisa">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="visaRequirement:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtVisa">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbTripPurpose">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="tripPurpose:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtAccommodation">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAccommodationActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
