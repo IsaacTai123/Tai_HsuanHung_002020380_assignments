@@ -5,20 +5,28 @@
 package ui;
 
 import java.awt.CardLayout;
+import model.ServiceCatalog;
+import model.Vehicle;
+import model.VehicleDirectory;
 
 /**
  *
  * @author tisaac
  */
 public class MaimJFrame extends javax.swing.JFrame {
+    
+    VehicleDirectory vehicleDir;
+    ServiceCatalog serviceCatalog;
 
     /**
      * Creates new form MaimJFrame
      */
     public MaimJFrame() {
         initComponents();
-        setSize(800, 600);
         
+        vehicleDir = new VehicleDirectory();
+        serviceCatalog = new ServiceCatalog();
+        setSize(800, 600);
         setStartUp();
     }
 
@@ -88,7 +96,7 @@ public class MaimJFrame extends javax.swing.JFrame {
     }
 
     private void setStartUp() {
-        startPageJPanel startUp = new startPageJPanel(mainWorkArea);
+        startPageJPanel startUp = new startPageJPanel(mainWorkArea, vehicleDir, serviceCatalog);
         mainWorkArea.add("startPage", startUp);
         CardLayout ly = (CardLayout) mainWorkArea.getLayout();
         ly.next(mainWorkArea);

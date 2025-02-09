@@ -14,4 +14,24 @@ public class ServiceCatalog {
     
     private ArrayList<Service> serviceCatalog;
     
+    public ServiceCatalog() {
+        serviceCatalog = new ArrayList<>();
+    }
+    
+    public Service addNewService() {
+        Service s = new Service();
+        serviceCatalog.add(s);
+        return s;
+    }
+
+    public ArrayList<Service> getServiceCatalog() {
+        return serviceCatalog;
+    }
+
+    public void setServiceCatalog(ArrayList<Service> serviceCatalog) {
+        this.serviceCatalog = serviceCatalog;
+    }
+    
+    
+    
 }

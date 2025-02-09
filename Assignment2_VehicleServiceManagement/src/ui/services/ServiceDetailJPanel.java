@@ -5,7 +5,11 @@
 package ui.services;
 
 import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Service;
+
 
 /**
  *
@@ -14,13 +18,15 @@ import javax.swing.JPanel;
 public class ServiceDetailJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
+    Service service;
 
     /**
      * Creates new form ServicesViewJPanel
      */
-    public ServiceDetailJPanel(JPanel mainWorkArea) {
+    public ServiceDetailJPanel(JPanel mainWorkArea, Service service) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
+        this.service = service;
     }
 
     /**
@@ -59,6 +65,11 @@ public class ServiceDetailJPanel extends javax.swing.JPanel {
         lblServiceDuration.setText("Service Duration");
 
         btnCreate.setText("Create Service");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -141,10 +152,79 @@ public class ServiceDetailJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        mainWorkArea.remove(this);
-        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
-        ly.previous(mainWorkArea);
+        backAction();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // Check if any field is empty
+        if (txtServiceID.getText().trim().isEmpty() ||
+            txtServiceType.getText().trim().isEmpty() ||
+            txtCost.getText().trim().isEmpty() ||
+            txtMechanicName.getText().trim().isEmpty() ||
+            txtServiceDuration.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "All fields must be filled!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validate Service ID (integer)
+//        int serviceID;
+//        try {
+//            serviceID = Integer.parseInt(txtServiceID.getText().trim());
+//            if (serviceID <= 0) {
+//                JOptionPane.showMessageDialog(this, "Service ID must be a positive integer!", "Input Error", JOptionPane.ERROR_MESSAGE);
+//                return;
+//            }
+//        } catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog(this, "Service ID must be a valid integer!", "Input Error", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+        
+        // Validate Cost (double)
+        double cost;
+        try {
+            cost = Double.parseDouble(txtCost.getText().trim());
+            if (cost < 0) {
+                JOptionPane.showMessageDialog(this, "Cost cannot be negative!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Cost must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validate Service Duration (short)
+        short duration;
+        try {
+            duration = Short.parseShort(txtServiceDuration.getText().trim());
+            if (duration <= 0) {
+                JOptionPane.showMessageDialog(this, "Service Duration must be a positive number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Service Duration must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // If all validations pass
+        JOptionPane.showMessageDialog(this, "Service Created Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Store the value
+        service.setId(txtServiceID.getText().trim());
+        service.setCost(cost);
+        service.setDuration(duration);
+        service.setMechanicName(txtMechanicName.getText().trim());
+        service.setType(txtServiceType.getText().trim());
+        
+        // Reset the text fields
+        txtServiceID.setText("");
+        txtServiceDuration.setText("");
+        txtServiceType.setText("");
+        txtCost.setText("");
+        txtMechanicName.setText("");
+        
+        
+    }//GEN-LAST:event_btnCreateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -162,4 +242,17 @@ public class ServiceDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtServiceID;
     private javax.swing.JTextField txtServiceType;
     // End of variables declaration//GEN-END:variables
+
+    private void backAction() {
+        mainWorkArea.remove(this);
+        
+        Component[] componentArray = mainWorkArea.getComponents();
+        Component cp = componentArray[componentArray.length - 1];
+        if (cp instanceof ServicesWorkAreaJPanel) {
+            ((ServicesWorkAreaJPanel) cp).refreshTable();
+        }
+        
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.previous(mainWorkArea);
+    }
 }

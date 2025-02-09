@@ -14,4 +14,23 @@ public class VehicleDirectory {
     
     private ArrayList<Vehicle> vehicleDirectory;
     
+    public VehicleDirectory() {
+        vehicleDirectory = new ArrayList<>();
+    }
+    
+    public Vehicle addNewVehicle() {
+        Vehicle v = new Vehicle();
+        vehicleDirectory.add(v);
+        return v;
+    }
+
+    public ArrayList<Vehicle> getVehicleDirectory() {
+        return vehicleDirectory;
+    }
+
+    public void setVehicleDirectory(ArrayList<Vehicle> vehicleDirectory) {
+        this.vehicleDirectory = vehicleDirectory;
+    }
+    
+    
 }

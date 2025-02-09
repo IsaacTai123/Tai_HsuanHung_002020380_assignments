@@ -8,6 +8,9 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import model.ServiceCatalog;
+import model.Vehicle;
+import model.VehicleDirectory;
 import ui.services.ServicesWorkAreaJPanel;
 import ui.vehicle.OwnerVehicleJPanel;
 import ui.vehicle.VehicleManagementJPanel;
@@ -19,17 +22,21 @@ import ui.vehicle.VehicleManagementJPanel;
 public class startPageJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
+    VehicleDirectory vehicleDir;
+    ServiceCatalog serviceCatalog;
 
     /**
      * Creates new form startPageJPanel
      */
-    public startPageJPanel(JPanel mainWorkArea) {
+    public startPageJPanel(JPanel mainWorkArea, VehicleDirectory vehicleDir, ServiceCatalog serviceCatalog) {
         initComponents();
 //        splitPanel.setEnabled(false); // Disable user interaction
         splitPanel.setDividerSize(0); // Hide the draggable divider
         splitPanel.setResizeWeight(0.5); // Optional: Keep equal division
         
         this.mainWorkArea = mainWorkArea;
+        this.vehicleDir = vehicleDir;
+        this.serviceCatalog = serviceCatalog;
     }
 
     /**
@@ -131,7 +138,8 @@ public class startPageJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServicesActionPerformed
-        ServicesWorkAreaJPanel serviceWorkArea = new ServicesWorkAreaJPanel(mainWorkArea);
+        
+        ServicesWorkAreaJPanel serviceWorkArea = new ServicesWorkAreaJPanel(mainWorkArea, serviceCatalog);
         mainWorkArea.add("ServiceWorkArea", serviceWorkArea);
         CardLayout ly = (CardLayout) mainWorkArea.getLayout();
         ly.next(mainWorkArea);

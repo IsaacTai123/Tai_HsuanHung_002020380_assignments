@@ -6,6 +6,11 @@ package ui.services;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Service;
+import model.ServiceCatalog;
+import model.Vehicle;
+import model.VehicleDirectory;
 
 /**
  *
@@ -14,13 +19,17 @@ import javax.swing.JPanel;
 public class ServicesWorkAreaJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
+    ServiceCatalog serviceCatalog;
 
     /**
      * Creates new form ServiceWorkAreaJPanel
      */
-    public ServicesWorkAreaJPanel(JPanel mainWorkArea) {
+    public ServicesWorkAreaJPanel(JPanel mainWorkArea, ServiceCatalog serviceCatalog) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
+        this.serviceCatalog = serviceCatalog;
+        
+        refreshTable();
     }
 
     /**
@@ -141,7 +150,9 @@ public class ServicesWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        ServiceDetailJPanel serviceD = new ServiceDetailJPanel(mainWorkArea);
+        Service s = serviceCatalog.addNewService();
+        
+        ServiceDetailJPanel serviceD = new ServiceDetailJPanel(mainWorkArea, s);
         mainWorkArea.add("ServiceDetail", serviceD);
         CardLayout ly = (CardLayout) mainWorkArea.getLayout();
         ly.next(mainWorkArea);
@@ -173,4 +184,19 @@ public class ServicesWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblServices;
     // End of variables declaration//GEN-END:variables
+
+    public void refreshTable() {
+        DefaultTableModel tableM = (DefaultTableModel) tblServices.getModel();
+        tableM.setRowCount(0);
+        
+        Object row[] = new Object[4];
+        for (Service s : serviceCatalog.getServiceCatalog()) {
+            row[0] = s;
+            row[1] = s.getMechanicName();
+            row[2] = s.getCost();
+            row[3] = s.getDuration();
+            
+            tableM.addRow(row);
+        }
+    }
 }

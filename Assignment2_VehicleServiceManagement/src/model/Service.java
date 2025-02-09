@@ -10,17 +10,17 @@ package model;
  */
 public class Service {
     
-    private int id;
+    private String id;
     private String type;
     private double cost;
     private String mechanicName;
     private short duration; // in minutes
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -56,4 +56,8 @@ public class Service {
         this.duration = duration;
     }
     
+    @Override
+    public String toString() {
+        return type;
+    }
 }
