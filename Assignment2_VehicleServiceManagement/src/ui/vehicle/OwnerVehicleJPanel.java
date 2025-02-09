@@ -5,9 +5,14 @@
 package ui.vehicle;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Owner;
+import model.Service;
+import model.ServiceCatalog;
+import model.Vehicle;
+import model.VehicleDirectory;
 
 /**
  *
@@ -16,14 +21,21 @@ import javax.swing.JPanel;
 public class OwnerVehicleJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
+    ServiceCatalog serviceCatalog;
+    VehicleDirectory vehicleDir;
+    
 
     /**
      * Creates new form OwnerVehicleJPanel
      */
-    public OwnerVehicleJPanel(JPanel mainWorkArea) {
+    public OwnerVehicleJPanel(JPanel mainWorkArea, ServiceCatalog serviceCatalog, VehicleDirectory vehicleDir) {
         initComponents();
         this.setSize(800, 800);
         this.mainWorkArea = mainWorkArea;
+        this.serviceCatalog = serviceCatalog;
+        this.vehicleDir = vehicleDir;
+        
+        popServices();
     }
 
     /**
@@ -57,6 +69,8 @@ public class OwnerVehicleJPanel extends javax.swing.JPanel {
         lblVehicleID = new javax.swing.JLabel();
         txtVehicleID = new javax.swing.JTextField();
         lblMake = new javax.swing.JLabel();
+        lblYear = new javax.swing.JLabel();
+        txtYear = new javax.swing.JTextField();
         lblRegister = new javax.swing.JButton();
 
         lblLastName.setText("Last Name");
@@ -88,35 +102,37 @@ public class OwnerVehicleJPanel extends javax.swing.JPanel {
         lblOwnerTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblOwnerTitle.setText("Vehicle Details");
 
-        cmbServiceOpted.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lblServiceOpted.setText("Service Opted");
 
         lblVehicleID.setText("Vehicle ID");
 
         lblMake.setText("Make");
 
+        lblYear.setText("Year");
+
         javax.swing.GroupLayout vehicleJPanelLayout = new javax.swing.GroupLayout(vehicleJPanel);
         vehicleJPanel.setLayout(vehicleJPanelLayout);
         vehicleJPanelLayout.setHorizontalGroup(
             vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblOwnerTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(vehicleJPanelLayout.createSequentialGroup()
                 .addGap(77, 77, 77)
-                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblVehicleID, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblMake, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblModel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblRegistrationNum, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblServiceOpted, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblYear)
+                    .addComponent(lblVehicleID)
+                    .addComponent(lblMake)
+                    .addComponent(lblModel)
+                    .addComponent(lblRegistrationNum)
+                    .addComponent(lblServiceOpted))
                 .addGap(58, 58, 58)
                 .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtVehicleID, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMake, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRegistrationNum, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(108, Short.MAX_VALUE))
-            .addComponent(lblOwnerTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         vehicleJPanelLayout.setVerticalGroup(
             vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,14 +157,23 @@ public class OwnerVehicleJPanel extends javax.swing.JPanel {
                     .addComponent(lblRegistrationNum))
                 .addGap(18, 18, 18)
                 .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblServiceOpted))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblYear))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblServiceOpted)
+                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         vehicleJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblMake, lblModel, lblRegistrationNum, lblServiceOpted, lblVehicleID});
 
         lblRegister.setText("Register Service");
+        lblRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblRegisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -211,9 +236,9 @@ public class OwnerVehicleJPanel extends javax.swing.JPanel {
                     .addComponent(txtServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(38, 38, 38)
                 .addComponent(lblRegister)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(62, 62, 62)
@@ -239,6 +264,65 @@ public class OwnerVehicleJPanel extends javax.swing.JPanel {
         mainWorkArea.repaint();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void lblRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblRegisterActionPerformed
+        // Get Owner and Vehicle data
+        String firstName = txtFirstName.getText().trim();
+        String lastName = txtLastName.getText().trim();
+        String serviceDateStr = txtServiceDate.getText().trim();
+        String ownerID = txtOwnerID.getText().trim();
+        String model = txtModel.getText().trim();
+        String make = txtMake.getText().trim();
+        String registrationNum = txtRegistrationNum.getText().trim();
+        String vehicleID = txtVehicleID.getText().trim();
+        String yearStr = txtYear.getText().trim();
+        Service selectedService = (Service) cmbServiceOpted.getSelectedItem();
+        
+        // Validate Required Fields
+        if (firstName.isEmpty() || lastName.isEmpty() || serviceDateStr.isEmpty() || 
+            ownerID.isEmpty() || model.isEmpty() || make.isEmpty() || registrationNum.isEmpty() || 
+            vehicleID.isEmpty() || yearStr.isEmpty() || selectedService == null) {
+
+            JOptionPane.showMessageDialog(this, "All fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validate serviceDate (Must be a valid long)
+        long serviceDate;
+        try {
+            serviceDate = Long.parseLong(serviceDateStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Service Date must be a valid number!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validate Year (Must be a valid year)
+        int year;
+        try {
+            year = Integer.parseInt(yearStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Year must be a valid number!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        
+        // Create an Owner
+        Owner owner = new Owner();
+        owner.setFirstName(firstName);
+        owner.setLastName(lastName);
+        owner.setId(ownerID);
+        owner.setServiceDate(serviceDate);
+        
+        Vehicle v = vehicleDir.addNewVehicle();
+        v.setId(vehicleID);
+        v.setMake(make);
+        v.setModel(model);
+        v.setRegistrationNum(registrationNum);
+        v.setYear(year);
+        v.setServiceOpted(selectedService);
+        
+        clearFields();
+    }//GEN-LAST:event_lblRegisterActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -255,6 +339,7 @@ public class OwnerVehicleJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblServiceDate;
     private javax.swing.JLabel lblServiceOpted;
     private javax.swing.JLabel lblVehicleID;
+    private javax.swing.JLabel lblYear;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtMake;
@@ -263,6 +348,33 @@ public class OwnerVehicleJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtRegistrationNum;
     private javax.swing.JTextField txtServiceDate;
     private javax.swing.JTextField txtVehicleID;
+    private javax.swing.JTextField txtYear;
     private javax.swing.JPanel vehicleJPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void popServices() {
+        cmbServiceOpted.removeAllItems();
+        
+        if (serviceCatalog.getServiceCatalog() == null) {
+        System.out.println("Service catalog is null!");
+        return;
+    }
+        
+        for (Service s : serviceCatalog.getServiceCatalog()) {
+            cmbServiceOpted.addItem(s.toString());
+        }
+    }
+    
+    private void clearFields() {
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtServiceDate.setText("");
+        txtOwnerID.setText("");
+        txtModel.setText("");
+        txtMake.setText("");
+        txtRegistrationNum.setText("");
+        txtVehicleID.setText("");
+        txtYear.setText("");
+        cmbServiceOpted.setSelectedIndex(-1); // Reset JComboBox selection
+}
 }

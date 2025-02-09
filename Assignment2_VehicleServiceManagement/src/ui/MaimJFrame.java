@@ -6,7 +6,6 @@ package ui;
 
 import java.awt.CardLayout;
 import model.ServiceCatalog;
-import model.Vehicle;
 import model.VehicleDirectory;
 
 /**
@@ -96,7 +95,7 @@ public class MaimJFrame extends javax.swing.JFrame {
     }
 
     private void setStartUp() {
-        startPageJPanel startUp = new startPageJPanel(mainWorkArea, vehicleDir, serviceCatalog);
+        StartPageJPanel startUp = new StartPageJPanel(mainWorkArea, vehicleDir, serviceCatalog);
         mainWorkArea.add("startPage", startUp);
         CardLayout ly = (CardLayout) mainWorkArea.getLayout();
         ly.next(mainWorkArea);

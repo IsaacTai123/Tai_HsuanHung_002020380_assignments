@@ -56,6 +56,8 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
         lblVehicleID = new javax.swing.JLabel();
         txtVehicleID = new javax.swing.JTextField();
         lblMake = new javax.swing.JLabel();
+        txtYear = new javax.swing.JTextField();
+        lblYear = new javax.swing.JLabel();
         btnVehicleSave = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
@@ -106,25 +108,29 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
 
         lblMake.setText("Make");
 
+        lblYear.setText("Year");
+
         javax.swing.GroupLayout vehicleJPanelLayout = new javax.swing.GroupLayout(vehicleJPanel);
         vehicleJPanel.setLayout(vehicleJPanelLayout);
         vehicleJPanelLayout.setHorizontalGroup(
             vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(vehicleJPanelLayout.createSequentialGroup()
                 .addGap(77, 77, 77)
-                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblVehicleID, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblMake, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblModel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblRegistrationNum, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblServiceOpted, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblVehicleID)
+                    .addComponent(lblMake)
+                    .addComponent(lblModel)
+                    .addComponent(lblRegistrationNum)
+                    .addComponent(lblServiceOpted)
+                    .addComponent(lblYear))
                 .addGap(58, 58, 58)
                 .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtVehicleID, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMake, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRegistrationNum, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(108, Short.MAX_VALUE))
             .addComponent(lblOwnerTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -150,10 +156,14 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
                     .addComponent(txtRegistrationNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRegistrationNum))
                 .addGap(18, 18, 18)
-                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblYear))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblServiceOpted))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         btnVehicleSave.setText("Save");
@@ -162,21 +172,25 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(btnBack)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(lblOwnerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(136, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132))
+                        .addContainerGap()
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(btnBack))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(133, 133, 133)
+                                .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 129, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(lblOwnerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnVehicleSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,9 +218,9 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBack)
-                .addGap(31, 31, 31)
+                .addGap(25, 25, 25)
                 .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(lblOwnerTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -224,11 +238,11 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblServiceDate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(btnVehicleDetail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVehicleSave)
-                .addGap(55, 55, 55))
+                .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -260,6 +274,7 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblServiceOpted;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblVehicleID;
+    private javax.swing.JLabel lblYear;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtMake;
@@ -268,6 +283,7 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtRegistrationNum;
     private javax.swing.JTextField txtServiceDate;
     private javax.swing.JTextField txtVehicleID;
+    private javax.swing.JTextField txtYear;
     private javax.swing.JPanel vehicleJPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,24 +16,32 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblTitle" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblTitle" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                              <Component id="vehicleJPanel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="129" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Component id="lblOwnerTitle1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="136" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="vehicleJPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="btnVehicleSave" max="32767" attributes="0"/>
@@ -70,9 +78,9 @@
               <Component id="lblTitle" min="-2" pref="58" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="vehicleJPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
               <Component id="lblOwnerTitle1" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -94,11 +102,11 @@
                   <Component id="txtLastName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblServiceDate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="btnVehicleDetail" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnVehicleSave" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -178,12 +186,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblVehicleID" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblMake" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblModel" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblRegistrationNum" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblServiceOpted" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblYear" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -192,6 +201,7 @@
                       <Component id="txtModel" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                       <Component id="txtRegistrationNum" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                       <Component id="cmbServiceOpted" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
+                      <Component id="txtYear" min="-2" pref="162" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="108" max="32767" attributes="0"/>
               </Group>
@@ -224,11 +234,16 @@
                       <Component id="lblRegistrationNum" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cmbServiceOpted" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblServiceOpted" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblYear" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cmbServiceOpted" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblServiceOpted" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -289,6 +304,13 @@
         <Component class="javax.swing.JLabel" name="lblMake">
           <Properties>
             <Property name="text" type="java.lang.String" value="Make"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtYear">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblYear">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Year"/>
           </Properties>
         </Component>
       </SubComponents>

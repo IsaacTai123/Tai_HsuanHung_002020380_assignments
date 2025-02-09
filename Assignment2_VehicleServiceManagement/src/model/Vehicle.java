@@ -15,7 +15,7 @@ public class Vehicle {
     private String model;
     private int year;
     private String registrationNum;
-    private ServiceCatalog serviceCatalog;
+    private Service serviceOpted;
     
 
     public String getId() {
@@ -58,12 +58,12 @@ public class Vehicle {
         this.registrationNum = registrationNum;
     }
 
-    public ServiceCatalog getServiceOpted() {
-        return serviceCatalog;
+    public Service getServiceOpted() {
+        return serviceOpted;
     }
 
-    public void setServiceOpted(ServiceCatalog serviceOpted) {
-        this.serviceCatalog = serviceOpted;
+    public void setServiceOpted(Service serviceOpted) {
+        this.serviceOpted = serviceOpted;
     }
     
     

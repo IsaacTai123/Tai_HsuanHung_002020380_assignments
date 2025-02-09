@@ -19,7 +19,7 @@ import ui.vehicle.VehicleManagementJPanel;
  *
  * @author tisaac
  */
-public class startPageJPanel extends javax.swing.JPanel {
+public class StartPageJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
     VehicleDirectory vehicleDir;
@@ -28,7 +28,7 @@ public class startPageJPanel extends javax.swing.JPanel {
     /**
      * Creates new form startPageJPanel
      */
-    public startPageJPanel(JPanel mainWorkArea, VehicleDirectory vehicleDir, ServiceCatalog serviceCatalog) {
+    public StartPageJPanel(JPanel mainWorkArea, VehicleDirectory vehicleDir, ServiceCatalog serviceCatalog) {
         initComponents();
 //        splitPanel.setEnabled(false); // Disable user interaction
         splitPanel.setDividerSize(0); // Hide the draggable divider
@@ -146,7 +146,7 @@ public class startPageJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnServicesActionPerformed
 
     private void btnVehicleOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicleOwnerActionPerformed
-        OwnerVehicleJPanel ownerVehicle = new OwnerVehicleJPanel(mainWorkArea);        
+        OwnerVehicleJPanel ownerVehicle = new OwnerVehicleJPanel(mainWorkArea, serviceCatalog, vehicleDir);        
         mainWorkArea.add("OwnerVehicle", ownerVehicle);
         
         // Get the reference to the JFrame that contains mainWorkArea.

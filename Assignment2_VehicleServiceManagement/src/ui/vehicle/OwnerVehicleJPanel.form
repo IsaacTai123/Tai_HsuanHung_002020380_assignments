@@ -92,9 +92,9 @@
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="vehicleJPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="lblRegister" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -162,9 +162,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Component id="lblOwnerTitle" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="lblYear" min="-2" max="-2" attributes="0"/>
                       <Component id="lblVehicleID" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblMake" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblModel" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -178,10 +180,10 @@
                       <Component id="txtModel" min="-2" pref="162" max="-2" attributes="0"/>
                       <Component id="txtRegistrationNum" min="-2" pref="162" max="-2" attributes="0"/>
                       <Component id="cmbServiceOpted" min="-2" pref="162" max="-2" attributes="0"/>
+                      <Component id="txtYear" min="-2" pref="162" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="108" max="32767" attributes="0"/>
               </Group>
-              <Component id="lblOwnerTitle" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -211,10 +213,15 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="cmbServiceOpted" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblServiceOpted" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtYear" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblYear" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblServiceOpted" linkSize="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbServiceOpted" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -248,12 +255,7 @@
         <Component class="javax.swing.JComboBox" name="cmbServiceOpted">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -277,12 +279,22 @@
             <Property name="text" type="java.lang.String" value="Make"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="lblYear">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Year"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtYear">
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="lblRegister">
       <Properties>
         <Property name="text" type="java.lang.String" value="Register Service"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lblRegisterActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
