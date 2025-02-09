@@ -5,6 +5,7 @@
 package ui.services;
 
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Service;
@@ -102,6 +103,11 @@ public class ServicesWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -165,14 +171,31 @@ public class ServicesWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // Check if service has been selected
+        Service s = null;
+        
+        int selectedRow = hasSelection();
+        if (selectedRow != -1) {
+            s = (Service) tblServices.getValueAt(selectedRow, 0);
+        }
         
         // Navigate to update page
-        ServiceUpdateJPanel serviceUpdate = new ServiceUpdateJPanel(mainWorkArea);
+        ServiceUpdateJPanel serviceUpdate = new ServiceUpdateJPanel(mainWorkArea, s);
         mainWorkArea.add("ServiceUpdate", serviceUpdate);
         CardLayout ly = (CardLayout) mainWorkArea.getLayout();
         ly.next(mainWorkArea);
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        Service s = null;
+        
+        int selectedRow = hasSelection();
+        if (selectedRow != -1) {
+            s = (Service) tblServices.getValueAt(selectedRow, 0);
+        }
+        
+        serviceCatalog.removeService(s);
+        refreshTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -198,5 +221,21 @@ public class ServicesWorkAreaJPanel extends javax.swing.JPanel {
             
             tableM.addRow(row);
         }
+    }
+    
+    /**
+    * Checks if a row is selected in the table.
+    *
+    * @return the index of the selected row, or -1 if no row is selected.
+    *         Displays a warning message if no selection is made.
+    */
+    public int hasSelection() {
+        int row = tblServices.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select the item first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return -1;
+        }
+        
+        return row;
     }
 }

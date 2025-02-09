@@ -167,19 +167,6 @@ public class ServiceDetailJPanel extends javax.swing.JPanel {
             return;
         }
         
-        // Validate Service ID (integer)
-//        int serviceID;
-//        try {
-//            serviceID = Integer.parseInt(txtServiceID.getText().trim());
-//            if (serviceID <= 0) {
-//                JOptionPane.showMessageDialog(this, "Service ID must be a positive integer!", "Input Error", JOptionPane.ERROR_MESSAGE);
-//                return;
-//            }
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(this, "Service ID must be a valid integer!", "Input Error", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-        
         // Validate Cost (double)
         double cost;
         try {
@@ -223,7 +210,7 @@ public class ServiceDetailJPanel extends javax.swing.JPanel {
         txtCost.setText("");
         txtMechanicName.setText("");
         
-        
+        backAction();
     }//GEN-LAST:event_btnCreateActionPerformed
 
 

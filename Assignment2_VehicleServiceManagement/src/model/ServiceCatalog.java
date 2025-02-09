@@ -23,6 +23,10 @@ public class ServiceCatalog {
         serviceCatalog.add(s);
         return s;
     }
+    
+    public void removeService(Service s) {
+        serviceCatalog.remove(s);
+    }
 
     public ArrayList<Service> getServiceCatalog() {
         return serviceCatalog;
@@ -31,7 +35,6 @@ public class ServiceCatalog {
     public void setServiceCatalog(ArrayList<Service> serviceCatalog) {
         this.serviceCatalog = serviceCatalog;
     }
-    
     
     
 }

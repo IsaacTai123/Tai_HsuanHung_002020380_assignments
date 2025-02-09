@@ -154,12 +154,6 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
 
     private void btnViewDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailActionPerformed
         // Check if service has been selected
-
-        // Navigate to update page
-        ServiceUpdateJPanel serviceUpdate = new ServiceUpdateJPanel(mainWorkArea);
-        mainWorkArea.add("ServiceUpdate", serviceUpdate);
-        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
-        ly.next(mainWorkArea);
     }//GEN-LAST:event_btnViewDetailActionPerformed
 
     private void btnSearchAcctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAcctActionPerformed

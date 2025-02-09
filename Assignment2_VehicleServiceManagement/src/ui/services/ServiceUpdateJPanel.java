@@ -5,7 +5,10 @@
 package ui.services;
 
 import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import model.Service;
 
 /**
  *
@@ -14,15 +17,17 @@ import javax.swing.JPanel;
 public class ServiceUpdateJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
+    Service service;
 
     /**
      * Creates new form ServiceUpdateJPanel
      */
-    public ServiceUpdateJPanel(JPanel mainWorkArea) {
+    public ServiceUpdateJPanel(JPanel mainWorkArea, Service service) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
+        this.service = service;
         
-        txtServiceID.setEnabled(false); // Can't change ID
+        showCurrentValue();
        
     }
 
@@ -162,9 +167,55 @@ public class ServiceUpdateJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // Check if any field is empty
+        if (txtServiceID.getText().trim().isEmpty() ||
+            txtServiceType.getText().trim().isEmpty() ||
+            txtCost.getText().trim().isEmpty() ||
+            txtMechanicName.getText().trim().isEmpty() ||
+            txtServiceDuration.getText().trim().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(this, "All fields must be filled!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         
+        // Validate Cost (double)
+        double cost;
+        try {
+            cost = Double.parseDouble(txtCost.getText().trim());
+            if (cost < 0) {
+                JOptionPane.showMessageDialog(this, "Cost cannot be negative!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Cost must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Validate Service Duration (short)
+        short duration;
+        try {
+            duration = Short.parseShort(txtServiceDuration.getText().trim());
+            if (duration <= 0) {
+                JOptionPane.showMessageDialog(this, "Service Duration must be a positive number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Service Duration must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // If all validations pass
+        JOptionPane.showMessageDialog(this, "Service Update Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Store the value
+        service.setId(txtServiceID.getText().trim());
+        service.setCost(cost);
+        service.setDuration(duration);
+        service.setMechanicName(txtMechanicName.getText().trim());
+        service.setType(txtServiceType.getText().trim());
         
         // Disable txt fields
+        txtServiceID.setEnabled(false);
         txtCost.setEnabled(false);
         txtMechanicName.setEnabled(false);
         txtServiceDuration.setEnabled(false);
@@ -172,14 +223,11 @@ public class ServiceUpdateJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        mainWorkArea.remove(this);
-        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
-        ly.previous(mainWorkArea);
-        
-        refreshTable();
+        backAction();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        txtServiceID.setEnabled(true);
         txtCost.setEnabled(true);
         txtMechanicName.setEnabled(true);
         txtServiceDuration.setEnabled(true);
@@ -204,7 +252,26 @@ public class ServiceUpdateJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtServiceType;
     // End of variables declaration//GEN-END:variables
 
-    private void refreshTable() {
-        // Refresh the services table for updated value
+    
+    private void backAction() {
+        mainWorkArea.remove(this);
+        
+        Component[] componentArray = mainWorkArea.getComponents();
+        Component cp = componentArray[componentArray.length - 1];
+        if (cp instanceof ServicesWorkAreaJPanel) {
+            ((ServicesWorkAreaJPanel) cp).refreshTable();
+        }
+        
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.previous(mainWorkArea);
+    }
+
+    private void showCurrentValue() {
+        txtCost.setText(String.valueOf(service.getCost()));
+        txtMechanicName.setText(service.getMechanicName());
+        txtServiceDuration.setText(String.valueOf(service.getDuration()));
+        txtServiceID.setText(service.getId());
+        txtServiceType.setText(service.getType());
+        
     }
 }
