@@ -8,6 +8,7 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import model.OwnerDirectory;
 import model.ServiceCatalog;
 import model.Vehicle;
 import model.VehicleDirectory;
@@ -24,19 +25,21 @@ public class StartPageJPanel extends javax.swing.JPanel {
     JPanel mainWorkArea;
     VehicleDirectory vehicleDir;
     ServiceCatalog serviceCatalog;
+    OwnerDirectory ownerDir;
 
     /**
      * Creates new form startPageJPanel
      */
-    public StartPageJPanel(JPanel mainWorkArea, VehicleDirectory vehicleDir, ServiceCatalog serviceCatalog) {
+    public StartPageJPanel(JPanel mainWorkArea, VehicleDirectory vehicleDir, ServiceCatalog serviceCatalog, OwnerDirectory ownerDir) {
         initComponents();
-//        splitPanel.setEnabled(false); // Disable user interaction
+        splitPanel.setEnabled(false); // Disable user interaction
         splitPanel.setDividerSize(0); // Hide the draggable divider
         splitPanel.setResizeWeight(0.5); // Optional: Keep equal division
         
         this.mainWorkArea = mainWorkArea;
         this.vehicleDir = vehicleDir;
         this.serviceCatalog = serviceCatalog;
+        this.ownerDir = ownerDir;
     }
 
     /**
@@ -146,7 +149,7 @@ public class StartPageJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnServicesActionPerformed
 
     private void btnVehicleOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicleOwnerActionPerformed
-        OwnerVehicleJPanel ownerVehicle = new OwnerVehicleJPanel(mainWorkArea, serviceCatalog, vehicleDir);        
+        OwnerVehicleJPanel ownerVehicle = new OwnerVehicleJPanel(mainWorkArea, serviceCatalog, vehicleDir, ownerDir);        
         mainWorkArea.add("OwnerVehicle", ownerVehicle);
         
         // Get the reference to the JFrame that contains mainWorkArea.
@@ -173,7 +176,7 @@ public class StartPageJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVehicleOwnerActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        VehicleManagementJPanel vehicleManage = new VehicleManagementJPanel(mainWorkArea);
+        VehicleManagementJPanel vehicleManage = new VehicleManagementJPanel(mainWorkArea, vehicleDir, serviceCatalog, ownerDir);
         mainWorkArea.add("VehicleManagement", vehicleManage);
         CardLayout ly = (CardLayout) mainWorkArea.getLayout();
         ly.next(mainWorkArea);

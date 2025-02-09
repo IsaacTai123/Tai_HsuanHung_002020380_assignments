@@ -6,6 +6,7 @@ package ui.vehicle;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import model.Owner;
 
 /**
  *
@@ -14,13 +15,17 @@ import javax.swing.JPanel;
 public class VehicleViewJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
+    Owner owner;
 
     /**
      * Creates new form VehicleViewJPanel
      */
-    public VehicleViewJPanel(JPanel mainWorkArea) {
+    public VehicleViewJPanel(JPanel mainWorkArea, Owner owner) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
+        this.owner = owner;
+        
+        showSelectedValue();
     }
 
     /**
@@ -34,7 +39,7 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
 
         lblTitle = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        btnVehicleDetail = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         lblOwnerID = new javax.swing.JLabel();
         txtOwnerID = new javax.swing.JTextField();
         lblFirstName = new javax.swing.JLabel();
@@ -58,7 +63,7 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
         lblMake = new javax.swing.JLabel();
         txtYear = new javax.swing.JTextField();
         lblYear = new javax.swing.JLabel();
-        btnVehicleSave = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -71,10 +76,10 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnVehicleDetail.setText("Update");
-        btnVehicleDetail.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVehicleDetailActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -99,8 +104,6 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
         lblOwnerTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblOwnerTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblOwnerTitle.setText("Vehicle Details");
-
-        cmbServiceOpted.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblServiceOpted.setText("Service Opted");
 
@@ -166,7 +169,12 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        btnVehicleSave.setText("Save");
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -193,8 +201,8 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnVehicleSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnVehicleDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                            .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                         .addGap(49, 49, 49))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,9 +247,9 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
                     .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblServiceDate))
                 .addGap(28, 28, 28)
-                .addComponent(btnVehicleDetail)
+                .addComponent(btnUpdate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVehicleSave)
+                .addComponent(btnSave)
                 .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -252,15 +260,19 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
         ly.previous(mainWorkArea);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnVehicleDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicleDetailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVehicleDetailActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        setFormEnabled(true);
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        setFormEnabled(false);
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnVehicleDetail;
-    private javax.swing.JButton btnVehicleSave;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbServiceOpted;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblLastName;
@@ -286,4 +298,30 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtYear;
     private javax.swing.JPanel vehicleJPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void showSelectedValue() {
+        txtFirstName.setText(owner.getFirstName());
+        txtLastName.setText(owner.getLastName());
+        txtServiceDate.setText(String.valueOf(owner.getServiceDate()));
+        txtOwnerID.setText(owner.getId());
+        txtModel.setText(owner.getVehicle().getModel());
+        txtMake.setText(owner.getVehicle().getMake());
+        txtRegistrationNum.setText(owner.getVehicle().getRegistrationNum());
+        txtVehicleID.setText(owner.getVehicle().getId());
+        txtYear.setText(String.valueOf(owner.getVehicle().getYear()));
+        cmbServiceOpted.setSelectedItem(owner.getVehicle().getServiceOpted()); // Reset JComboBox selection
+    }
+    
+    private void setFormEnabled(boolean isEnabled) {
+        txtFirstName.setEnabled(isEnabled);
+        txtLastName.setEnabled(isEnabled);
+        txtServiceDate.setEnabled(isEnabled);
+        txtOwnerID.setEnabled(isEnabled);
+        txtModel.setEnabled(isEnabled);
+        txtMake.setEnabled(isEnabled);
+        txtRegistrationNum.setEnabled(isEnabled);
+        txtVehicleID.setEnabled(isEnabled);
+        txtYear.setEnabled(isEnabled);
+        cmbServiceOpted.setEnabled(isEnabled);
+    }
 }

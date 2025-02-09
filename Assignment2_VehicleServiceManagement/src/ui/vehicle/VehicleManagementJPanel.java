@@ -5,7 +5,16 @@
 package ui.vehicle;
 
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Owner;
+import model.OwnerDirectory;
+import model.Service;
+import model.ServiceCatalog;
+import model.Vehicle;
+import model.VehicleDirectory;
 import ui.services.ServiceUpdateJPanel;
 
 /**
@@ -15,13 +24,21 @@ import ui.services.ServiceUpdateJPanel;
 public class VehicleManagementJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
+    VehicleDirectory vehicleDir;
+    ServiceCatalog serviceCatalog;
+    OwnerDirectory ownerDir;
 
     /**
      * Creates new form VehicleManagementJPanel
      */
-    public VehicleManagementJPanel(JPanel mainWorkArea) {
+    public VehicleManagementJPanel(JPanel mainWorkArea, VehicleDirectory vehicleDir, ServiceCatalog serviceCatalog, OwnerDirectory ownerDir) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
+        this.vehicleDir = vehicleDir;
+        this.serviceCatalog = serviceCatalog;
+        this.ownerDir = ownerDir;
+        
+        refreshTable();
     }
 
     /**
@@ -153,11 +170,67 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailActionPerformed
-        // Check if service has been selected
+        Owner o = null;
+        
+        int selectedRow = hasSelection();
+        if (selectedRow != -1) {
+            o = (Owner) tblManageVehicle.getValueAt(selectedRow, 0);
+        }
+        
+        VehicleViewJPanel viewJPanel = new VehicleViewJPanel(mainWorkArea, o);
+        mainWorkArea.add("VehicleView", viewJPanel);
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.next(mainWorkArea);
+        
     }//GEN-LAST:event_btnViewDetailActionPerformed
 
     private void btnSearchAcctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAcctActionPerformed
-        // TODO add your handling code here:
+       
+        String s = txtSearchAcct.getText();
+        if (s.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter id or name of the vehicle", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        ArrayList<Owner> searchedItems = new ArrayList<>();
+        
+        for (Owner o : ownerDir.getOwnerDirectory()) {
+            Vehicle v = o.getVehicle();
+            if (s == v.getId() || s == v.getModel()) {
+                searchedItems.add(o);
+            }
+        }
+        
+        if (searchedItems.size() == 0) {
+            JOptionPane.showMessageDialog(null, "No vehicle found", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (searchedItems.size() > 1) {
+            DefaultTableModel tableM = (DefaultTableModel) tblManageVehicle.getModel();
+            tableM.setRowCount(0);
+
+            // ownerid, vehicleid, serviceopted, cost
+            Object row[] = new Object[4];
+            for (Owner o : searchedItems) {
+                Vehicle v = o.getVehicle();
+                row[0] = o;
+                row[1] = v;
+                row[2] = v.getServiceOpted();
+                row[3] = v.getServiceOpted().getCost();
+
+                tableM.addRow(row);
+            }
+        } 
+
+        if (searchedItems.size() == 1) {
+            VehicleViewJPanel viewJPanel = new VehicleViewJPanel(mainWorkArea, searchedItems.get(0));
+            mainWorkArea.add("VehicleView", viewJPanel);
+            CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+            ly.next(mainWorkArea);
+        }
+        
+        
     }//GEN-LAST:event_btnSearchAcctActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -180,7 +253,36 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtSearchAcct;
     // End of variables declaration//GEN-END:variables
 
-    private void refreshTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void refreshTable() {
+        DefaultTableModel tableM = (DefaultTableModel) tblManageVehicle.getModel();
+        tableM.setRowCount(0);
+        
+        // ownerid, vehicleid, serviceopted, cost
+        Object row[] = new Object[4];
+        for (Owner o : ownerDir.getOwnerDirectory()) {
+            Vehicle v = o.getVehicle();
+            row[0] = o;
+            row[1] = v;
+            row[2] = v.getServiceOpted();
+            row[3] = v.getServiceOpted().getCost();
+            
+            tableM.addRow(row);
+        }
+    }
+    
+    /**
+    * Checks if a row is selected in the table.
+    *
+    * @return the index of the selected row, or -1 if no row is selected.
+    *         Displays a warning message if no selection is made.
+    */
+    public int hasSelection() {
+        int row = tblManageVehicle.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Please select the item first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return -1;
+        }
+        
+        return row;
     }
 }

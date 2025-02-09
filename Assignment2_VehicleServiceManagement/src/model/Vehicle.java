@@ -66,5 +66,8 @@ public class Vehicle {
         this.serviceOpted = serviceOpted;
     }
     
-    
+    @Override
+    public String toString() {
+        return id;
+    }
 }
