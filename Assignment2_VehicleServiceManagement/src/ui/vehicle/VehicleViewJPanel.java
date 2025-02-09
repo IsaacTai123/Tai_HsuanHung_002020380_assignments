@@ -4,17 +4,23 @@
  */
 package ui.vehicle;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tisaac
  */
 public class VehicleViewJPanel extends javax.swing.JPanel {
+    
+    JPanel mainWorkArea;
 
     /**
      * Creates new form VehicleViewJPanel
      */
-    public VehicleViewJPanel() {
+    public VehicleViewJPanel(JPanel mainWorkArea) {
         initComponents();
+        this.mainWorkArea = mainWorkArea;
     }
 
     /**
@@ -26,19 +32,242 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitle = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        btnVehicleDetail = new javax.swing.JButton();
+        lblOwnerID = new javax.swing.JLabel();
+        txtOwnerID = new javax.swing.JTextField();
+        lblFirstName = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        lblOwnerTitle1 = new javax.swing.JLabel();
+        lblLastName = new javax.swing.JLabel();
+        txtLastName = new javax.swing.JTextField();
+        lblServiceDate = new javax.swing.JLabel();
+        txtServiceDate = new javax.swing.JTextField();
+        vehicleJPanel = new javax.swing.JPanel();
+        txtMake = new javax.swing.JTextField();
+        lblModel = new javax.swing.JLabel();
+        txtModel = new javax.swing.JTextField();
+        lblRegistrationNum = new javax.swing.JLabel();
+        lblOwnerTitle = new javax.swing.JLabel();
+        txtRegistrationNum = new javax.swing.JTextField();
+        cmbServiceOpted = new javax.swing.JComboBox<>();
+        lblServiceOpted = new javax.swing.JLabel();
+        lblVehicleID = new javax.swing.JLabel();
+        txtVehicleID = new javax.swing.JTextField();
+        lblMake = new javax.swing.JLabel();
+        btnVehicleSave = new javax.swing.JButton();
+
+        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Vehicle Profile");
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnVehicleDetail.setText("Update");
+        btnVehicleDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVehicleDetailActionPerformed(evt);
+            }
+        });
+
+        lblOwnerID.setText("Owner ID");
+
+        lblFirstName.setText("First Name");
+
+        lblOwnerTitle1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblOwnerTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOwnerTitle1.setText("Owner Details");
+
+        lblLastName.setText("Last Name");
+
+        lblServiceDate.setText("Service Date");
+
+        vehicleJPanel.setBackground(new java.awt.Color(102, 102, 102));
+
+        lblModel.setText("Model");
+
+        lblRegistrationNum.setText("Registration Number");
+
+        lblOwnerTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblOwnerTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOwnerTitle.setText("Vehicle Details");
+
+        cmbServiceOpted.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lblServiceOpted.setText("Service Opted");
+
+        lblVehicleID.setText("Vehicle ID");
+
+        lblMake.setText("Make");
+
+        javax.swing.GroupLayout vehicleJPanelLayout = new javax.swing.GroupLayout(vehicleJPanel);
+        vehicleJPanel.setLayout(vehicleJPanelLayout);
+        vehicleJPanelLayout.setHorizontalGroup(
+            vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vehicleJPanelLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblVehicleID, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblMake, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblModel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblRegistrationNum, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblServiceOpted, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(58, 58, 58)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtVehicleID, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMake, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRegistrationNum, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(108, Short.MAX_VALUE))
+            .addComponent(lblOwnerTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        vehicleJPanelLayout.setVerticalGroup(
+            vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vehicleJPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblOwnerTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtVehicleID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVehicleID))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMake, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMake))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblModel))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtRegistrationNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRegistrationNum))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblServiceOpted))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        btnVehicleSave.setText("Save");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(btnBack)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lblOwnerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(132, 132, 132))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnVehicleSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVehicleDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOwnerID, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblFirstName)
+                                .addComponent(lblLastName))
+                            .addComponent(lblServiceDate, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(254, 254, 254))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBack)
+                .addGap(31, 31, 31)
+                .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(lblOwnerTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOwnerID)
+                    .addComponent(txtOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFirstName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLastName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblServiceDate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(btnVehicleDetail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVehicleSave)
+                .addGap(55, 55, 55))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        mainWorkArea.remove(this);
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.previous(mainWorkArea);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnVehicleDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicleDetailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVehicleDetailActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnVehicleDetail;
+    private javax.swing.JButton btnVehicleSave;
+    private javax.swing.JComboBox<String> cmbServiceOpted;
+    private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblMake;
+    private javax.swing.JLabel lblModel;
+    private javax.swing.JLabel lblOwnerID;
+    private javax.swing.JLabel lblOwnerTitle;
+    private javax.swing.JLabel lblOwnerTitle1;
+    private javax.swing.JLabel lblRegistrationNum;
+    private javax.swing.JLabel lblServiceDate;
+    private javax.swing.JLabel lblServiceOpted;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblVehicleID;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtMake;
+    private javax.swing.JTextField txtModel;
+    private javax.swing.JTextField txtOwnerID;
+    private javax.swing.JTextField txtRegistrationNum;
+    private javax.swing.JTextField txtServiceDate;
+    private javax.swing.JTextField txtVehicleID;
+    private javax.swing.JPanel vehicleJPanel;
     // End of variables declaration//GEN-END:variables
 }

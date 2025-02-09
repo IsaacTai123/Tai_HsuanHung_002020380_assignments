@@ -5,8 +5,12 @@
 package ui;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import ui.services.ServicesWorkAreaJPanel;
+import ui.vehicle.OwnerVehicleJPanel;
+import ui.vehicle.VehicleManagementJPanel;
 
 /**
  *
@@ -21,7 +25,7 @@ public class startPageJPanel extends javax.swing.JPanel {
      */
     public startPageJPanel(JPanel mainWorkArea) {
         initComponents();
-        splitPanel.setEnabled(false); // Disable user interaction
+//        splitPanel.setEnabled(false); // Disable user interaction
         splitPanel.setDividerSize(0); // Hide the draggable divider
         splitPanel.setResizeWeight(0.5); // Optional: Keep equal division
         
@@ -49,6 +53,11 @@ public class startPageJPanel extends javax.swing.JPanel {
         splitPanel.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         btnVehicleOwner.setText("Vehicle & Owner");
+        btnVehicleOwner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVehicleOwnerActionPerformed(evt);
+            }
+        });
 
         btnServices.setText("Services");
         btnServices.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +67,11 @@ public class startPageJPanel extends javax.swing.JPanel {
         });
 
         jButton3.setText("Manage Vehicle");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout workAreaLayout = new javax.swing.GroupLayout(workArea);
         workArea.setLayout(workAreaLayout);
@@ -122,6 +136,40 @@ public class startPageJPanel extends javax.swing.JPanel {
         CardLayout ly = (CardLayout) mainWorkArea.getLayout();
         ly.next(mainWorkArea);
     }//GEN-LAST:event_btnServicesActionPerformed
+
+    private void btnVehicleOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicleOwnerActionPerformed
+        OwnerVehicleJPanel ownerVehicle = new OwnerVehicleJPanel(mainWorkArea);        
+        mainWorkArea.add("OwnerVehicle", ownerVehicle);
+        
+        // Get the reference to the JFrame that contains mainWorkArea.
+        // Since mainWorkArea is a JPanel, we need to use SwingUtilities.getWindowAncestor()
+        // to find its parent JFrame.
+        JFrame frame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(mainWorkArea);
+        if (frame != null) {
+            frame.setSize(800, 800); // 調整 JFrame 大小
+            frame.revalidate();
+            frame.repaint();
+        }
+        
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.next(mainWorkArea);
+        
+
+        // Revalidate the mainWorkArea to refresh its layout and ensure the changes take effect.
+        // This is especially necessary when working with dynamic layouts like CardLayout.
+        mainWorkArea.revalidate(); 
+        
+        // Repaint the mainWorkArea to visually update any changes made to its components.
+        // This forces a redraw of the UI, ensuring everything is displayed correctly.
+        mainWorkArea.repaint();
+    }//GEN-LAST:event_btnVehicleOwnerActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        VehicleManagementJPanel vehicleManage = new VehicleManagementJPanel(mainWorkArea);
+        mainWorkArea.add("VehicleManagement", vehicleManage);
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.next(mainWorkArea);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

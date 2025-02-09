@@ -17,9 +17,7 @@ public class MaimJFrame extends javax.swing.JFrame {
      */
     public MaimJFrame() {
         initComponents();
-        
-        setSize(800,600);
-        setResizable(false);
+        setSize(800, 600);
         
         setStartUp();
     }

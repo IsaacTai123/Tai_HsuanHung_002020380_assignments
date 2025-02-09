@@ -4,17 +4,24 @@
  */
 package ui.vehicle;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import ui.services.ServiceUpdateJPanel;
+
 /**
  *
  * @author tisaac
  */
 public class VehicleManagementJPanel extends javax.swing.JPanel {
+    
+    JPanel mainWorkArea;
 
     /**
      * Creates new form VehicleManagementJPanel
      */
-    public VehicleManagementJPanel() {
+    public VehicleManagementJPanel(JPanel mainWorkArea) {
         initComponents();
+        this.mainWorkArea = mainWorkArea;
     }
 
     /**
@@ -26,19 +33,160 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitle = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblManageVehicle = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
+        btnViewDetail = new javax.swing.JButton();
+        btnDeleteAcct = new javax.swing.JButton();
+        btnSearchAcct = new javax.swing.JButton();
+        txtSearchAcct = new javax.swing.JTextField();
+
+        setPreferredSize(new java.awt.Dimension(800, 600));
+
+        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Manage Vehicles");
+
+        tblManageVehicle.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Owner ID", "Vehicle ID", "Service Opted", "Cost"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblManageVehicle);
+        if (tblManageVehicle.getColumnModel().getColumnCount() > 0) {
+            tblManageVehicle.getColumnModel().getColumn(0).setResizable(false);
+            tblManageVehicle.getColumnModel().getColumn(1).setResizable(false);
+            tblManageVehicle.getColumnModel().getColumn(2).setResizable(false);
+            tblManageVehicle.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnViewDetail.setText("View Detail");
+        btnViewDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewDetailActionPerformed(evt);
+            }
+        });
+
+        btnDeleteAcct.setText("Delete Account");
+
+        btnSearchAcct.setText("Search Account");
+        btnSearchAcct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchAcctActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 26, Short.MAX_VALUE)
+                        .addComponent(btnBack)
+                        .addGap(678, 678, 678)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnDeleteAcct)
+                            .addComponent(btnViewDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(txtSearchAcct, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSearchAcct))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDeleteAcct, btnViewDetail});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearchAcct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchAcct))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnViewDetail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDeleteAcct)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnViewDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailActionPerformed
+        // Check if service has been selected
+
+        // Navigate to update page
+        ServiceUpdateJPanel serviceUpdate = new ServiceUpdateJPanel(mainWorkArea);
+        mainWorkArea.add("ServiceUpdate", serviceUpdate);
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.next(mainWorkArea);
+    }//GEN-LAST:event_btnViewDetailActionPerformed
+
+    private void btnSearchAcctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAcctActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchAcctActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        mainWorkArea.remove(this);
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.previous(mainWorkArea);
+        
+        refreshTable();
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDeleteAcct;
+    private javax.swing.JButton btnSearchAcct;
+    private javax.swing.JButton btnViewDetail;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblManageVehicle;
+    private javax.swing.JTextField txtSearchAcct;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTable() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

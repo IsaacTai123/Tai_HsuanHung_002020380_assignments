@@ -4,17 +4,26 @@
  */
 package ui.vehicle;
 
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author tisaac
  */
 public class OwnerVehicleJPanel extends javax.swing.JPanel {
+    
+    JPanel mainWorkArea;
 
     /**
      * Creates new form OwnerVehicleJPanel
      */
-    public OwnerVehicleJPanel() {
+    public OwnerVehicleJPanel(JPanel mainWorkArea) {
         initComponents();
+        this.setSize(800, 800);
+        this.mainWorkArea = mainWorkArea;
     }
 
     /**
@@ -26,19 +35,234 @@ public class OwnerVehicleJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtFirstName = new javax.swing.JTextField();
+        lblLastName = new javax.swing.JLabel();
+        txtLastName = new javax.swing.JTextField();
+        lblServiceDate = new javax.swing.JLabel();
+        txtServiceDate = new javax.swing.JTextField();
+        lblOwnerID = new javax.swing.JLabel();
+        txtOwnerID = new javax.swing.JTextField();
+        lblFirstName = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        lblOwnerTitle1 = new javax.swing.JLabel();
+        vehicleJPanel = new javax.swing.JPanel();
+        txtMake = new javax.swing.JTextField();
+        lblModel = new javax.swing.JLabel();
+        txtModel = new javax.swing.JTextField();
+        lblRegistrationNum = new javax.swing.JLabel();
+        lblOwnerTitle = new javax.swing.JLabel();
+        txtRegistrationNum = new javax.swing.JTextField();
+        cmbServiceOpted = new javax.swing.JComboBox<>();
+        lblServiceOpted = new javax.swing.JLabel();
+        lblVehicleID = new javax.swing.JLabel();
+        txtVehicleID = new javax.swing.JTextField();
+        lblMake = new javax.swing.JLabel();
+        lblRegister = new javax.swing.JButton();
+
+        lblLastName.setText("Last Name");
+
+        lblServiceDate.setText("Service Date");
+
+        lblOwnerID.setText("Owner ID");
+
+        lblFirstName.setText("First Name");
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        lblOwnerTitle1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblOwnerTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOwnerTitle1.setText("Owner Details");
+
+        vehicleJPanel.setBackground(new java.awt.Color(102, 102, 102));
+
+        lblModel.setText("Model");
+
+        lblRegistrationNum.setText("Registration Number");
+
+        lblOwnerTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        lblOwnerTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOwnerTitle.setText("Vehicle Details");
+
+        cmbServiceOpted.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lblServiceOpted.setText("Service Opted");
+
+        lblVehicleID.setText("Vehicle ID");
+
+        lblMake.setText("Make");
+
+        javax.swing.GroupLayout vehicleJPanelLayout = new javax.swing.GroupLayout(vehicleJPanel);
+        vehicleJPanel.setLayout(vehicleJPanelLayout);
+        vehicleJPanelLayout.setHorizontalGroup(
+            vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vehicleJPanelLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblVehicleID, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblMake, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblModel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblRegistrationNum, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblServiceOpted, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(58, 58, 58)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtVehicleID, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMake, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRegistrationNum, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(108, Short.MAX_VALUE))
+            .addComponent(lblOwnerTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        vehicleJPanelLayout.setVerticalGroup(
+            vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(vehicleJPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblOwnerTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtVehicleID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVehicleID))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMake, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMake))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblModel))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtRegistrationNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRegistrationNum))
+                .addGap(18, 18, 18)
+                .addGroup(vehicleJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbServiceOpted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblServiceOpted))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        vehicleJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblMake, lblModel, lblRegistrationNum, lblServiceOpted, lblVehicleID});
+
+        lblRegister.setText("Register Service");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(257, 257, 257)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblFirstName)
+                                    .addComponent(lblLastName)
+                                    .addComponent(lblServiceDate)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(btnBack)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblOwnerID)))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(324, 324, 324)
+                        .addComponent(lblRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(139, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lblOwnerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblOwnerID)
+                            .addComponent(txtOwnerID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBack)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFirstName)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLastName)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblServiceDate)
+                    .addComponent(txtServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(lblRegister)
+                .addContainerGap(61, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(62, 62, 62)
+                    .addComponent(lblOwnerTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(701, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        mainWorkArea.remove(this);
+        
+        JFrame frame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(mainWorkArea);
+        if (frame != null) {
+            frame.setSize(800, 600); // 調整 JFrame 大小
+            frame.revalidate();
+            frame.repaint();
+        }
+
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.previous(mainWorkArea);
+        
+        mainWorkArea.revalidate(); 
+        mainWorkArea.repaint();
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JComboBox<String> cmbServiceOpted;
+    private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblMake;
+    private javax.swing.JLabel lblModel;
+    private javax.swing.JLabel lblOwnerID;
+    private javax.swing.JLabel lblOwnerTitle;
+    private javax.swing.JLabel lblOwnerTitle1;
+    private javax.swing.JButton lblRegister;
+    private javax.swing.JLabel lblRegistrationNum;
+    private javax.swing.JLabel lblServiceDate;
+    private javax.swing.JLabel lblServiceOpted;
+    private javax.swing.JLabel lblVehicleID;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtMake;
+    private javax.swing.JTextField txtModel;
+    private javax.swing.JTextField txtOwnerID;
+    private javax.swing.JTextField txtRegistrationNum;
+    private javax.swing.JTextField txtServiceDate;
+    private javax.swing.JTextField txtVehicleID;
+    private javax.swing.JPanel vehicleJPanel;
     // End of variables declaration//GEN-END:variables
 }

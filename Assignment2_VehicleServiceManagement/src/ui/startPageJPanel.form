@@ -74,6 +74,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Vehicle &amp; Owner"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVehicleOwnerActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnServices">
               <Properties>
@@ -87,6 +90,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Vehicle"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
