@@ -5,6 +5,7 @@
 package ui.vehicle;
 
 import java.awt.CardLayout;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.Owner;
 
@@ -22,6 +23,7 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
      */
     public VehicleViewJPanel(JPanel mainWorkArea, Owner owner) {
         initComponents();
+        this.setSize(800, 800);
         this.mainWorkArea = mainWorkArea;
         this.owner = owner;
         
@@ -177,7 +179,7 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(133, 133, 133)
                                 .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 129, Short.MAX_VALUE)))
+                        .addGap(0, 137, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(lblOwnerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -205,7 +207,7 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addGap(25, 25, 25)
                 .addComponent(vehicleJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(lblOwnerTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -229,8 +231,7 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         mainWorkArea.remove(this);
-        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
-        ly.previous(mainWorkArea);
+        resizeJFrameAndNavigate(600);
     }//GEN-LAST:event_btnBackActionPerformed
 
 
@@ -286,5 +287,20 @@ public class VehicleViewJPanel extends javax.swing.JPanel {
         txtVehicleID.setEnabled(isEnabled);
         txtYear.setEnabled(isEnabled);
         txtServiceOpted.setEnabled(isEnabled);
+    }
+    
+    public void resizeJFrameAndNavigate(int height) {
+        JFrame frame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(mainWorkArea);
+        if (frame != null) {
+            frame.setSize(800, height);
+            frame.revalidate();
+            frame.repaint();
+        }
+        
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.previous(mainWorkArea);
+        
+        mainWorkArea.revalidate(); 
+        mainWorkArea.repaint();
     }
 }

@@ -6,6 +6,7 @@ package ui.vehicle;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -184,8 +185,7 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
         
         VehicleViewJPanel viewJPanel = new VehicleViewJPanel(mainWorkArea, o);
         mainWorkArea.add("VehicleView", viewJPanel);
-        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
-        ly.next(mainWorkArea);
+        resizeJFrameAndNavigate(800);
         
     }//GEN-LAST:event_btnViewDetailActionPerformed
 
@@ -231,8 +231,7 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
         } else if (searchedItems.size() == 1) {
             VehicleViewJPanel viewJPanel = new VehicleViewJPanel(mainWorkArea, searchedItems.get(0));
             mainWorkArea.add("VehicleView", viewJPanel);
-            CardLayout ly = (CardLayout) mainWorkArea.getLayout();
-            ly.next(mainWorkArea);
+            resizeJFrameAndNavigate(800);
         }
         
     }//GEN-LAST:event_btnSearchAcctActionPerformed
@@ -300,5 +299,20 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
         }
         
         return row;
+    }
+    
+    public void resizeJFrameAndNavigate(int height) {
+        JFrame frame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(mainWorkArea);
+        if (frame != null) {
+            frame.setSize(800, height); // 調整 JFrame 大小
+            frame.revalidate();
+            frame.repaint();
+        }
+        
+        CardLayout ly = (CardLayout) mainWorkArea.getLayout();
+        ly.next(mainWorkArea);
+        
+        mainWorkArea.revalidate(); 
+        mainWorkArea.repaint();
     }
 }
