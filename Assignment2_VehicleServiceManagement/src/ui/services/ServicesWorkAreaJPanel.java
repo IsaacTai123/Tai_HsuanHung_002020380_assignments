@@ -156,9 +156,8 @@ public class ServicesWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        Service s = serviceCatalog.addNewService();
-        
-        ServiceDetailJPanel serviceD = new ServiceDetailJPanel(mainWorkArea, s);
+
+        ServiceDetailJPanel serviceD = new ServiceDetailJPanel(mainWorkArea, serviceCatalog);
         mainWorkArea.add("ServiceDetail", serviceD);
         CardLayout ly = (CardLayout) mainWorkArea.getLayout();
         ly.next(mainWorkArea);

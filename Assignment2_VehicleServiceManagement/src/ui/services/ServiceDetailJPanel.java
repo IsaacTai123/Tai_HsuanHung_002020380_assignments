@@ -9,6 +9,7 @@ import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Service;
+import model.ServiceCatalog;
 
 
 /**
@@ -18,15 +19,15 @@ import model.Service;
 public class ServiceDetailJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
-    Service service;
+    ServiceCatalog serviceCatalog;
 
     /**
      * Creates new form ServicesViewJPanel
      */
-    public ServiceDetailJPanel(JPanel mainWorkArea, Service service) {
+    public ServiceDetailJPanel(JPanel mainWorkArea, ServiceCatalog serviceCatalog) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
-        this.service = service;
+        this.serviceCatalog = serviceCatalog;
     }
 
     /**
@@ -197,6 +198,7 @@ public class ServiceDetailJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Service Created Successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         
         // Store the value
+        Service service = serviceCatalog.addNewService();
         service.setId(txtServiceID.getText().trim());
         service.setCost(cost);
         service.setDuration(duration);
