@@ -15,6 +15,18 @@ public class Owner {
     private String lastName;
     private long serviceDate;
     private Vehicle vehicle;
+    
+    public Owner() {
+        
+    }
+    
+    public Owner(String id, String firstName, String lastName, long serviceDate, Vehicle vehicle) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.serviceDate = serviceDate;
+        this.vehicle = vehicle;
+    }
 
     public String getId() {
         return id;

@@ -107,6 +107,11 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
         });
 
         btnDeleteAcct.setText("Delete Account");
+        btnDeleteAcct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteAcctActionPerformed(evt);
+            }
+        });
 
         btnSearchAcct.setText("Search Account");
         btnSearchAcct.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +191,8 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
 
     private void btnSearchAcctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAcctActionPerformed
        
-        String s = txtSearchAcct.getText();
+        String s = txtSearchAcct.getText().trim();
+        System.err.println("input string: " + s);
         if (s.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please enter id or name of the vehicle", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
@@ -195,13 +201,14 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
         ArrayList<Owner> searchedItems = new ArrayList<>();
         
         for (Owner o : ownerDir.getOwnerDirectory()) {
+            System.out.println("search: owner id" + o.getId() + ", vehicle id" + o.getVehicle().getId());
             Vehicle v = o.getVehicle();
-            if (s == v.getId() || s == v.getModel()) {
+            if (s.equals(v.getId()) || s.equalsIgnoreCase(v.getModel())) {
                 searchedItems.add(o);
             }
         }
         
-        if (searchedItems.size() == 0) {
+        if (searchedItems.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No vehicle found", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -211,8 +218,8 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
             tableM.setRowCount(0);
 
             // ownerid, vehicleid, serviceopted, cost
-            Object row[] = new Object[4];
             for (Owner o : searchedItems) {
+                Object row[] = new Object[4];
                 Vehicle v = o.getVehicle();
                 row[0] = o;
                 row[1] = v;
@@ -221,15 +228,12 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
 
                 tableM.addRow(row);
             }
-        } 
-
-        if (searchedItems.size() == 1) {
+        } else if (searchedItems.size() == 1) {
             VehicleViewJPanel viewJPanel = new VehicleViewJPanel(mainWorkArea, searchedItems.get(0));
             mainWorkArea.add("VehicleView", viewJPanel);
             CardLayout ly = (CardLayout) mainWorkArea.getLayout();
             ly.next(mainWorkArea);
         }
-        
         
     }//GEN-LAST:event_btnSearchAcctActionPerformed
 
@@ -240,6 +244,18 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
         
         refreshTable();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnDeleteAcctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAcctActionPerformed
+        Owner o = null;
+        
+        int selectedRow = hasSelection();
+        if (selectedRow != -1) {
+            o = (Owner) tblManageVehicle.getValueAt(selectedRow, 0);
+        }
+        
+        ownerDir.removeOwner(o);
+        refreshTable();
+    }//GEN-LAST:event_btnDeleteAcctActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -258,8 +274,8 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
         tableM.setRowCount(0);
         
         // ownerid, vehicleid, serviceopted, cost
-        Object row[] = new Object[4];
         for (Owner o : ownerDir.getOwnerDirectory()) {
+            Object row[] = new Object[4];
             Vehicle v = o.getVehicle();
             row[0] = o;
             row[1] = v;

@@ -24,6 +24,17 @@ public class ServiceCatalog {
         return s;
     }
     
+    public Service addNewServiceWithData(String id, String type, double cost, String mechanic, Short duration) {
+        Service s = new Service();
+        s.setCost(cost);
+        s.setDuration(duration);
+        s.setType(type);
+        s.setMechanicName(mechanic);
+        s.setId(id);
+        serviceCatalog.add(s);
+        return s;
+    }
+    
     public void removeService(Service s) {
         serviceCatalog.remove(s);
     }

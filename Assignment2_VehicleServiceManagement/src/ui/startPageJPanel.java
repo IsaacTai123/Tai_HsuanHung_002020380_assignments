@@ -192,4 +192,6 @@ public class StartPageJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel viewArea;
     private javax.swing.JPanel workArea;
     // End of variables declaration//GEN-END:variables
+
+    
 }

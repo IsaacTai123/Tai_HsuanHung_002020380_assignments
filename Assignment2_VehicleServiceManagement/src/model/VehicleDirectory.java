@@ -23,6 +23,12 @@ public class VehicleDirectory {
         vehicleDirectory.add(v);
         return v;
     }
+    
+    public Vehicle addNewVehicleWithData(String id, String make, String model, int year, String registrationNum, Service serviceOpted) {
+        Vehicle vehicle = new Vehicle(id, make, model, year, registrationNum, serviceOpted);
+        vehicleDirectory.add(vehicle); 
+        return vehicle;
+    }
 
     public ArrayList<Vehicle> getVehicleDirectory() {
         return vehicleDirectory;

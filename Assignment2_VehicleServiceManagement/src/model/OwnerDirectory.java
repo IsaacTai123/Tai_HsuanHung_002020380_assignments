@@ -23,6 +23,15 @@ public class OwnerDirectory {
         ownerDirectory.add(o);
         return o;
     }
+    
+    public void addNewOwnerWithData(String id, String firstName, String lastName, long serviceDate, Vehicle vehicle) {
+        Owner owner = new Owner(id, firstName, lastName, serviceDate, vehicle);
+        ownerDirectory.add(owner);
+    }
+    
+    public void removeOwner(Owner o) {
+        ownerDirectory.remove(o);
+    }
 
     public ArrayList<Owner> getOwnerDirectory() {
         return ownerDirectory;
@@ -31,8 +40,5 @@ public class OwnerDirectory {
     public void setOwnerDirectory(ArrayList<Owner> ownerDirectory) {
         this.ownerDirectory = ownerDirectory;
     }
-    
-    
-    
     
 }

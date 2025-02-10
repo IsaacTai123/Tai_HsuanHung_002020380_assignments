@@ -17,6 +17,18 @@ public class Vehicle {
     private String registrationNum;
     private Service serviceOpted;
     
+    public Vehicle() {
+        
+    }
+    
+    public Vehicle(String id, String make, String model, int year, String registrationNum, Service serviceOpted) {
+        this.id = id;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.registrationNum = registrationNum;
+        this.serviceOpted = serviceOpted;
+    }
 
     public String getId() {
         return id;

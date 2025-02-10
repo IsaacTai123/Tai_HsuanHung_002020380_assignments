@@ -6,7 +6,9 @@ package ui;
 
 import java.awt.CardLayout;
 import model.OwnerDirectory;
+import model.Service;
 import model.ServiceCatalog;
+import model.Vehicle;
 import model.VehicleDirectory;
 
 /**
@@ -30,6 +32,8 @@ public class MaimJFrame extends javax.swing.JFrame {
         ownerDir = new OwnerDirectory();
         
         setSize(800, 600);
+        
+        populateVehicleDirectory();
         setStartUp();
     }
 
@@ -108,4 +112,32 @@ public class MaimJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainWorkArea;
     // End of variables declaration//GEN-END:variables
+
+    private void populateVehicleDirectory() {
+    // 創建一些預設的 Service
+    Service oil = serviceCatalog.addNewServiceWithData("S001", "Oil Change", 50.0, "John Doe", (short) 30);
+    Service carWash = serviceCatalog.addNewServiceWithData("S002", "Car Wash", 20.0, "Jane Smith", (short) 15);
+    Service tire = serviceCatalog.addNewServiceWithData("S003", "Tire Rotation", 40.0, "Tom Brown", (short) 45);
+
+    // 創建 Owner & Vehicle
+    
+    Vehicle v1 = vehicleDir.addNewVehicleWithData("V001", "Toyota", "Camry", 2020, "ABC123", oil);
+    ownerDir.addNewOwnerWithData("O001", "Alice", "Johnson", 20250210, v1);
+
+    
+    Vehicle v2 = vehicleDir.addNewVehicleWithData("V002", "Honda", "Civic", 2022, "XYZ789", carWash);
+    ownerDir.addNewOwnerWithData("O002", "Bob", "Smith", 20250310, v2);
+
+    
+    Vehicle v3 = vehicleDir.addNewVehicleWithData("V003", "Toyota", "Camry", 2019, "LMN456", tire);
+    ownerDir.addNewOwnerWithData("O003", "Charlie", "Brown", 20250801, v3);
+
+    
+    Vehicle v4 = vehicleDir.addNewVehicleWithData("V004", "Ford", "F-150", 2021, "JKL321", oil);
+    ownerDir.addNewOwnerWithData("O004", "David", "Williams", 20250901, v4);
+
+    
+    Vehicle v5 = vehicleDir.addNewVehicleWithData("V005", "Honda", "Civic", 2023, "GHI987", carWash);
+    ownerDir.addNewOwnerWithData("O005", "Emma", "Davis", 20260311, v5);
+}
 }

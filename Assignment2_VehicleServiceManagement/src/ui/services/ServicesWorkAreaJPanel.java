@@ -212,8 +212,8 @@ public class ServicesWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel tableM = (DefaultTableModel) tblServices.getModel();
         tableM.setRowCount(0);
         
-        Object row[] = new Object[4];
         for (Service s : serviceCatalog.getServiceCatalog()) {
+            Object row[] = new Object[4];
             row[0] = s;
             row[1] = s.getMechanicName();
             row[2] = s.getCost();
