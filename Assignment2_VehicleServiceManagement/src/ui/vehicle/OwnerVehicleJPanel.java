@@ -249,7 +249,7 @@ public class OwnerVehicleJPanel extends javax.swing.JPanel {
         
         JFrame frame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(mainWorkArea);
         if (frame != null) {
-            frame.setSize(800, 600); // 調整 JFrame 大小
+            frame.setSize(800, 600);
             frame.revalidate();
             frame.repaint();
         }

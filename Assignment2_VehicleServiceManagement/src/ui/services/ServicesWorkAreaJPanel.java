@@ -10,8 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Service;
 import model.ServiceCatalog;
-import model.Vehicle;
-import model.VehicleDirectory;
 
 /**
  *

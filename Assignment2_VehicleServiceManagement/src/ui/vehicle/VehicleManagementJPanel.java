@@ -12,11 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.Owner;
 import model.OwnerDirectory;
-import model.Service;
 import model.ServiceCatalog;
 import model.Vehicle;
 import model.VehicleDirectory;
-import ui.services.ServiceUpdateJPanel;
 
 /**
  *
@@ -25,18 +23,14 @@ import ui.services.ServiceUpdateJPanel;
 public class VehicleManagementJPanel extends javax.swing.JPanel {
     
     JPanel mainWorkArea;
-    VehicleDirectory vehicleDir;
-    ServiceCatalog serviceCatalog;
     OwnerDirectory ownerDir;
 
     /**
      * Creates new form VehicleManagementJPanel
      */
-    public VehicleManagementJPanel(JPanel mainWorkArea, VehicleDirectory vehicleDir, ServiceCatalog serviceCatalog, OwnerDirectory ownerDir) {
+    public VehicleManagementJPanel(JPanel mainWorkArea, OwnerDirectory ownerDir) {
         initComponents();
         this.mainWorkArea = mainWorkArea;
-        this.vehicleDir = vehicleDir;
-        this.serviceCatalog = serviceCatalog;
         this.ownerDir = ownerDir;
         
         refreshTable();
@@ -304,7 +298,7 @@ public class VehicleManagementJPanel extends javax.swing.JPanel {
     public void resizeJFrameAndNavigate(int height) {
         JFrame frame = (JFrame) javax.swing.SwingUtilities.getWindowAncestor(mainWorkArea);
         if (frame != null) {
-            frame.setSize(800, height); // 調整 JFrame 大小
+            frame.setSize(800, height);
             frame.revalidate();
             frame.repaint();
         }

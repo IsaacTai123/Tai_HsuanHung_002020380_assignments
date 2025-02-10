@@ -5,12 +5,10 @@
 package ui;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.OwnerDirectory;
 import model.ServiceCatalog;
-import model.Vehicle;
 import model.VehicleDirectory;
 import ui.services.ServicesWorkAreaJPanel;
 import ui.vehicle.OwnerVehicleJPanel;
@@ -176,7 +174,7 @@ public class StartPageJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVehicleOwnerActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        VehicleManagementJPanel vehicleManage = new VehicleManagementJPanel(mainWorkArea, vehicleDir, serviceCatalog, ownerDir);
+        VehicleManagementJPanel vehicleManage = new VehicleManagementJPanel(mainWorkArea, ownerDir);
         mainWorkArea.add("VehicleManagement", vehicleManage);
         CardLayout ly = (CardLayout) mainWorkArea.getLayout();
         ly.next(mainWorkArea);
