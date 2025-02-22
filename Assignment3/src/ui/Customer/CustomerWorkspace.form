@@ -16,12 +16,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="lblTitle" alignment="0" pref="650" max="32767" attributes="0"/>
+          <Component id="lblTitle" alignment="0" pref="649" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnManageBranches" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                  <Component id="btnManageUserAccounts" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="btnRentalHistory" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="btnCustomerBookCatalog" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -32,23 +32,18 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="lblTitle" min="-2" pref="62" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-              <Component id="btnManageUserAccounts" min="-2" max="-2" attributes="0"/>
+              <Component id="btnCustomerBookCatalog" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="btnManageBranches" min="-2" max="-2" attributes="0"/>
+              <Component id="btnRentalHistory" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="372" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnManageUserAccounts">
+    <Component class="javax.swing.JButton" name="btnRentalHistory">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Manage User Accounts"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnManageBranches">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Branches"/>
+        <Property name="text" type="java.lang.String" value="View Rental History"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTitle">
@@ -57,7 +52,12 @@
           <Font name="Helvetica Neue" size="24" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Admin Workspace"/>
+        <Property name="text" type="java.lang.String" value="Customer Workspace"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCustomerBookCatalog">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Browse Book Catalog"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Admin;
+package ui.Customer;
 
 /**
  *
  * @author tisaac
  */
-public class AdminWorkspace extends javax.swing.JPanel {
+public class CustomerWorkspace extends javax.swing.JPanel {
 
     /**
-     * Creates new form AdminWorkspace
+     * Creates new form CustomerWorkspace
      */
-    public AdminWorkspace() {
+    public CustomerWorkspace() {
         initComponents();
     }
 
@@ -26,28 +26,28 @@ public class AdminWorkspace extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnManageUserAccounts = new javax.swing.JButton();
-        btnManageBranches = new javax.swing.JButton();
+        btnRentalHistory = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
+        btnCustomerBookCatalog = new javax.swing.JButton();
 
-        btnManageUserAccounts.setText("Manage User Accounts");
-
-        btnManageBranches.setText("Manage Branches");
+        btnRentalHistory.setText("View Rental History");
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Admin Workspace");
+        lblTitle.setText("Customer Workspace");
+
+        btnCustomerBookCatalog.setText("Browse Book Catalog");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(220, 220, 220)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnManageBranches, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageUserAccounts, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRentalHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCustomerBookCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -55,17 +55,17 @@ public class AdminWorkspace extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84)
-                .addComponent(btnManageUserAccounts)
+                .addComponent(btnCustomerBookCatalog)
                 .addGap(28, 28, 28)
-                .addComponent(btnManageBranches)
+                .addComponent(btnRentalHistory)
                 .addContainerGap(372, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnManageBranches;
-    private javax.swing.JButton btnManageUserAccounts;
+    private javax.swing.JButton btnCustomerBookCatalog;
+    private javax.swing.JButton btnRentalHistory;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }
