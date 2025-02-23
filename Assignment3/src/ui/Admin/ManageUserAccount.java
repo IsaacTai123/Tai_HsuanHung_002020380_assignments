@@ -4,17 +4,21 @@
  */
 package ui.Admin;
 
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
 public class ManageUserAccount extends javax.swing.JPanel {
 
+    NavigationUtils nv;
     /**
      * Creates new form ManageUserAccount
      */
-    public ManageUserAccount() {
+    public ManageUserAccount(NavigationUtils nv) {
         initComponents();
+        this.nv = nv;
     }
 
     /**
@@ -42,6 +46,11 @@ public class ManageUserAccount extends javax.swing.JPanel {
         lblTitle.setText("Manage User Accounts");
 
         btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         tblUserAccounts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,6 +111,10 @@ public class ManageUserAccount extends javax.swing.JPanel {
                 .addGap(51, 51, 51))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        nv.goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

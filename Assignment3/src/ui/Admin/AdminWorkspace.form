@@ -46,6 +46,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage User Accounts"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageUserAccountsActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnManageBranches">
       <Properties>

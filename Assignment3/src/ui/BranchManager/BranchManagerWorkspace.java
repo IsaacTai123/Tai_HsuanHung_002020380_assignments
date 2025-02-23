@@ -4,17 +4,22 @@
  */
 package ui.BranchManager;
 
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
 public class BranchManagerWorkspace extends javax.swing.JPanel {
 
+    NavigationUtils nv;
+    
     /**
      * Creates new form Workspace
      */
-    public BranchManagerWorkspace() {
+    public BranchManagerWorkspace(NavigationUtils nv) {
         initComponents();
+        this.nv = nv;
     }
 
     /**

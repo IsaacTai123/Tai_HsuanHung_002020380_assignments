@@ -6,8 +6,10 @@ package ui;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import model.CustomerDirectory;
 import ui.Admin.AdminWorkspace;
 import ui.BranchManager.BranchManagerWorkspace;
+import ui.Customer.CustomerWorkspace;
 import utils.NavigationUtils;
 
 /**
@@ -62,6 +64,11 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnCustomer.setText("Customer");
+        btnCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustomerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout CtrlAreaLayout = new javax.swing.GroupLayout(CtrlArea);
         CtrlArea.setLayout(CtrlAreaLayout);
@@ -110,14 +117,19 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        AdminWorkspace adminWork = new AdminWorkspace();
+        AdminWorkspace adminWork = new AdminWorkspace(nv);
         nv.showCard(adminWork, "AdminWorkspace");
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnBranchManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBranchManagerActionPerformed
-        BranchManagerWorkspace mngWork = new BranchManagerWorkspace();     
+        BranchManagerWorkspace mngWork = new BranchManagerWorkspace(nv);     
         nv.showCard(mngWork, "BranchMngWorkspace");
     }//GEN-LAST:event_btnBranchManagerActionPerformed
+
+    private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
+        CustomerWorkspace csWork = new CustomerWorkspace(nv);
+        nv.showCard(csWork, "CustomerWorkspace");
+    }//GEN-LAST:event_btnCustomerActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,7 @@
 package ui.Admin;
 
 import model.UserDirectory;
+import utils.NavigationUtils;
 
 /**
  *
@@ -13,13 +14,15 @@ import model.UserDirectory;
 public class AdminWorkspace extends javax.swing.JPanel {
     
     UserDirectory userList;
+    NavigationUtils nv;
     
 
     /**
      * Creates new form AdminWorkspace
      */
-    public AdminWorkspace() {
+    public AdminWorkspace(NavigationUtils nv) {
         initComponents();
+        this.nv = nv;
     }
 
     /**
@@ -36,6 +39,11 @@ public class AdminWorkspace extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
 
         btnManageUserAccounts.setText("Manage User Accounts");
+        btnManageUserAccounts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageUserAccountsActionPerformed(evt);
+            }
+        });
 
         btnManageBranches.setText("Manage Branches");
 
@@ -67,6 +75,11 @@ public class AdminWorkspace extends javax.swing.JPanel {
                 .addContainerGap(372, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManageUserAccountsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageUserAccountsActionPerformed
+        ManageUserAccount mngUser = new ManageUserAccount(nv);
+        nv.showCard(mngUser, "ManageUserAccount");
+    }//GEN-LAST:event_btnManageUserAccountsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

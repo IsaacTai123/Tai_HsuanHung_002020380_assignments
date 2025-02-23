@@ -23,7 +23,7 @@ public class NavigationUtils {
      
     public void showCard(JPanel panel, String name) {
         // Add to history only if the last visited panel is different
-        if (!history.isEmpty() && !history.peek().equals(name)) {
+        if (history.isEmpty() || !history.peek().equals(name)) {
             history.push(name);
         }
         
@@ -36,10 +36,27 @@ public class NavigationUtils {
         workArea.revalidate();  // Ensures new components are recognized
         workArea.repaint();     // Forces UI to redraw
 
+//        System.out.println("show card stack size: " + history.size());
         
         // Show the requested panel
         CardLayout ly = (CardLayout) workArea.getLayout();
         ly.show(workArea, name);
+    }
+    
+    public void goBack() {
+//        System.out.println("stack size: " + history.size());
+        if (history.size() > 1) {
+            history.pop();
+            String prePanel = history.peek();
+            
+            workArea.revalidate();
+            workArea.repaint();
+            
+            CardLayout ly = (CardLayout) workArea.getLayout();
+            ly.show(workArea, prePanel);
+        } else {
+            System.out.println("sth goes wrong, no previous panel found");
+        }
     }
     
     private boolean panelExists(String name) {

@@ -4,17 +4,22 @@
  */
 package ui.Customer;
 
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
 public class CustomerWorkspace extends javax.swing.JPanel {
 
+    NavigationUtils nv;
+    
     /**
      * Creates new form CustomerWorkspace
      */
-    public CustomerWorkspace() {
+    public CustomerWorkspace(NavigationUtils nv) {
         initComponents();
+        this.nv = nv;
     }
 
     /**
