@@ -19,6 +19,7 @@ public class ManageUserAccount extends javax.swing.JPanel {
     public ManageUserAccount(NavigationUtils nv) {
         initComponents();
         this.nv = nv;
+        loadUserTable();
     }
 
     /**
@@ -125,4 +126,8 @@ public class ManageUserAccount extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblUserAccounts;
     // End of variables declaration//GEN-END:variables
+
+    private void loadUserTable() {
+        
+    }
 }

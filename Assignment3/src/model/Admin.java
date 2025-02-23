@@ -4,10 +4,26 @@
  */
 package model;
 
+import common.Role;
+
 /**
  *
  * @author tisaac
  */
-public class Admin {
+public class Admin extends UserProfile {
+    
+    public Admin() {
+        super();
+        this.role = Role.ADMIN;
+    }
+
+    public Admin(String name, String pwd, Role role) {
+        super(name, pwd, role);
+    }
+
+    @Override
+    void displayRole() {
+        System.out.println("Admin has been created");
+    }
     
 }

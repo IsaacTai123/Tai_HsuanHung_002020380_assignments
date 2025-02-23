@@ -10,20 +10,19 @@ import common.Role;
  *
  * @author tisaac
  */
-public class BranchManager extends UserProfile {
+public class Customer extends UserProfile {
     
-    public BranchManager() {
-        super(); // Optional (Better to omit in this case)
-        this.role = Role.BRANCH_MANAGER;
+    public Customer() {
+        super();
+        this.role = Role.CUSTOMER;
     }
     
-    public BranchManager(String name, String pwd, Role role) {
+    public Customer(String name, String pwd, Role role) {
         super(name, pwd, role);
     }
     
     @Override
     void displayRole() {
-        System.out.println("Branch Manager has been created");
+        System.out.println("Customer has been created");
     }
-    
 }
