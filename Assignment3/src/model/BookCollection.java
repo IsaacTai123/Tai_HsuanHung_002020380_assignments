@@ -4,10 +4,28 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author tisaac
  */
 public class BookCollection {
+    private ArrayList<Book> bookCollection;
+    
+    public BookCollection() {
+        bookCollection = new ArrayList<>();
+    }
+    
+    public Book addNewBook() {
+        Book b = new Book();
+        bookCollection.add(b);
+        return b;
+    }
+    
+    public void removeBook(Book b) {
+        bookCollection.remove(b);
+    }
+    
     
 }

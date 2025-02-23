@@ -4,11 +4,16 @@
  */
 package ui.Admin;
 
+import model.UserDirectory;
+
 /**
  *
  * @author tisaac
  */
 public class AdminWorkspace extends javax.swing.JPanel {
+    
+    UserDirectory userList;
+    
 
     /**
      * Creates new form AdminWorkspace
@@ -53,8 +58,9 @@ public class AdminWorkspace extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
+                .addGap(78, 78, 78)
                 .addComponent(btnManageUserAccounts)
                 .addGap(28, 28, 28)
                 .addComponent(btnManageBranches)

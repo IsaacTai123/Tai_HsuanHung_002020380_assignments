@@ -27,22 +27,22 @@ public class BranchManagerWorkspace extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTitle = new javax.swing.JLabel();
-        btnManageAuthors = new javax.swing.JButton();
         btnManageBooks = new javax.swing.JButton();
-        btnViewRevenue = new javax.swing.JButton();
+        btnManageAuthors = new javax.swing.JButton();
         btnManageRentalRequests = new javax.swing.JButton();
+        btnViewRevenue = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Branch Manager Workspace");
 
-        btnManageAuthors.setText("Manage Authors");
-
         btnManageBooks.setText("Manage Books");
 
-        btnViewRevenue.setText("View Revenue");
+        btnManageAuthors.setText("Manage Authors");
 
         btnManageRentalRequests.setText("Manage Rental Requests");
+
+        btnViewRevenue.setText("View Revenue");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -52,29 +52,29 @@ public class BranchManagerWorkspace extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(225, 225, 225)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnManageAuthors, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnViewRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageRentalRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnViewRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageRentalRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageAuthors, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageBooks, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(183, 183, 183))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(82, 82, 82)
                 .addComponent(btnManageBooks)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(btnManageAuthors)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(btnManageRentalRequests)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(btnViewRevenue)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

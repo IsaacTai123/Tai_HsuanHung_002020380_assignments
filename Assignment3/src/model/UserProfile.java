@@ -12,6 +12,7 @@ abstract class UserProfile {
     static int idCounter = 1;
     protected int id;
     protected String name;
+    protected String pwd;
     
     public UserProfile(String name) {
         this.id = idCounter++; // Assign unique ID and increment

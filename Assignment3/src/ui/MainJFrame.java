@@ -4,17 +4,26 @@
  */
 package ui;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import ui.Admin.AdminWorkspace;
+import ui.BranchManager.BranchManagerWorkspace;
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
 public class MainJFrame extends javax.swing.JFrame {
+    
+    NavigationUtils nv;
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        nv = new NavigationUtils(WorkArea);
     }
 
     /**
@@ -36,6 +45,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         SplitPanel.setDividerLocation(150);
+        SplitPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
         btnAdmin.setText("Admin");
         btnAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -45,6 +55,11 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnBranchManager.setText("Branch Manager");
+        btnBranchManager.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBranchManagerActionPerformed(evt);
+            }
+        });
 
         btnCustomer.setText("Customer");
 
@@ -84,19 +99,25 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SplitPanel)
+            .addComponent(SplitPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SplitPanel)
+            .addComponent(SplitPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        // TODO add your handling code here:
+        AdminWorkspace adminWork = new AdminWorkspace();
+        nv.showCard(adminWork, "AdminWorkspace");
     }//GEN-LAST:event_btnAdminActionPerformed
+
+    private void btnBranchManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBranchManagerActionPerformed
+        BranchManagerWorkspace mngWork = new BranchManagerWorkspace();     
+        nv.showCard(mngWork, "BranchMngWorkspace");
+    }//GEN-LAST:event_btnBranchManagerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,4 +162,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnBranchManager;
     private javax.swing.JButton btnCustomer;
     // End of variables declaration//GEN-END:variables
+
+    public void nextCard(JPanel jpanel, String name) { 
+        WorkArea.add(name, jpanel);
+        CardLayout ly = (CardLayout) WorkArea.getLayout();
+        ly.next(WorkArea);
+    }
 }

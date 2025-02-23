@@ -21,15 +21,15 @@
               <Component id="lblTitle" pref="638" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnManageAuthors" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                  <Component id="btnManageBooks" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                  <Component id="btnViewRevenue" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                  <Component id="btnManageRentalRequests" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-              </Group>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnViewRevenue" min="-2" pref="272" max="-2" attributes="0"/>
+                  <Component id="btnManageRentalRequests" min="-2" pref="272" max="-2" attributes="0"/>
+                  <Component id="btnManageAuthors" min="-2" pref="272" max="-2" attributes="0"/>
+                  <Component id="btnManageBooks" min="-2" pref="272" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -38,15 +38,15 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitle" min="-2" pref="62" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
               <Component id="btnManageBooks" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnManageAuthors" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnManageRentalRequests" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnViewRevenue" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="280" max="32767" attributes="0"/>
+              <EmptySpace pref="289" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,24 +61,24 @@
         <Property name="text" type="java.lang.String" value="Branch Manager Workspace"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnManageAuthors">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Manage Authors"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnManageBooks">
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Books"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnViewRevenue">
+    <Component class="javax.swing.JButton" name="btnManageAuthors">
       <Properties>
-        <Property name="text" type="java.lang.String" value="View Revenue"/>
+        <Property name="text" type="java.lang.String" value="Manage Authors"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnManageRentalRequests">
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Rental Requests"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnViewRevenue">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Revenue"/>
       </Properties>
     </Component>
   </SubComponents>
