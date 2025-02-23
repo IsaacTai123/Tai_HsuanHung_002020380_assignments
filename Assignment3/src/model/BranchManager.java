@@ -25,5 +25,4 @@ public class BranchManager extends UserProfile {
     void displayRole() {
         System.out.println("Branch Manager has been created");
     }
-    
 }

@@ -4,13 +4,14 @@
  */
 package model;
 
+import interfaces.IUserProfile;
 import common.Role;
 
 /**
  *
  * @author tisaac
  */
-abstract class UserProfile {
+abstract class UserProfile implements IUserProfile {
     static int idCounter = 1;
     protected int id;
     protected String name;
@@ -29,4 +30,41 @@ abstract class UserProfile {
     }
     
     abstract void displayRole();
+    
+    @Override
+    public int getId() {
+        return id;
+    }
+    
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    @Override
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return getRole().toString();
+    }
 }

@@ -7,6 +7,8 @@ package ui;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.CustomerDirectory;
+import model.UserDirectory;
+import org.w3c.dom.UserDataHandler;
 import ui.Admin.AdminWorkspace;
 import ui.BranchManager.BranchManagerWorkspace;
 import ui.Customer.CustomerWorkspace;
@@ -19,13 +21,14 @@ import utils.NavigationUtils;
 public class MainJFrame extends javax.swing.JFrame {
     
     NavigationUtils nv;
-
+    
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
         nv = new NavigationUtils(WorkArea);
+        
     }
 
     /**

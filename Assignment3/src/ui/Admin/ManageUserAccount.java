@@ -4,22 +4,31 @@
  */
 package ui.Admin;
 
+import interfaces.IDataRefreshCallback;
+import javax.swing.table.DefaultTableModel;
+import interfaces.IUserProfile;
+import javax.swing.JOptionPane;
+import model.UserDirectory;
 import utils.NavigationUtils;
 
 /**
  *
  * @author tisaac
  */
-public class ManageUserAccount extends javax.swing.JPanel {
+public class ManageUserAccount extends javax.swing.JPanel implements IDataRefreshCallback {
 
     NavigationUtils nv;
+    UserDirectory userList;
+    
     /**
      * Creates new form ManageUserAccount
      */
     public ManageUserAccount(NavigationUtils nv) {
         initComponents();
         this.nv = nv;
+        this.userList = UserDirectory.getInstance();
         loadUserTable();
+        
     }
 
     /**
@@ -39,8 +48,18 @@ public class ManageUserAccount extends javax.swing.JPanel {
         tblUserAccounts = new javax.swing.JTable();
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnNew.setText("New..");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -117,6 +136,24 @@ public class ManageUserAccount extends javax.swing.JPanel {
         nv.goBack();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        NewUserAccount nUser = new NewUserAccount(nv, this);
+        nv.showCard(nUser, "NewUserAccount");
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int selectedRow = tblUserAccounts.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select the item first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        IUserProfile user = (IUserProfile) tblUserAccounts.getValueAt(selectedRow, 0);
+        
+        userList.removeUser(user);
+        loadUserTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -128,6 +165,21 @@ public class ManageUserAccount extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void loadUserTable() {
+        DefaultTableModel model = (DefaultTableModel) tblUserAccounts.getModel();
+        model.setRowCount(0);
         
+        for (IUserProfile u : userList.getAllUsers()) {
+            Object[] row = new Object[3];
+            row[0] = u;
+            row[1] = u.getId();
+            row[2] = u.getName();
+            
+            model.addRow(row);
+        }
+    }
+
+    @Override
+    public void refreshData() {
+        loadUserTable();
     }
 }

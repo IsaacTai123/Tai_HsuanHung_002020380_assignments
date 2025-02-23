@@ -4,17 +4,32 @@
  */
 package ui.Admin;
 
+import common.Role;
+import interfaces.IDataRefreshCallback;
+import javax.swing.JOptionPane;
+import model.UserDirectory;
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
 public class NewUserAccount extends javax.swing.JPanel {
+    
+    private NavigationUtils nv;
+    private UserDirectory userList;
+    private IDataRefreshCallback callBack;
 
     /**
      * Creates new form NewUserAccount
      */
-    public NewUserAccount() {
+    public NewUserAccount(NavigationUtils nv, IDataRefreshCallback callBack) {
         initComponents();
+        this.nv = nv;
+        this.userList = UserDirectory.getInstance();
+        this.callBack = callBack;
+        populateRoleComboBox();
+        txtUserID.setEnabled(false);
     }
 
     /**
@@ -30,23 +45,33 @@ public class NewUserAccount extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         lblRole = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
-        txtRole = new javax.swing.JTextField();
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         lblPwd = new javax.swing.JLabel();
         txtPwd = new javax.swing.JTextField();
         lblUserID = new javax.swing.JLabel();
         txtUserID = new javax.swing.JTextField();
+        cmbRole = new javax.swing.JComboBox<>();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("New User Account Info");
 
         btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         lblRole.setText("Role");
 
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         lblUsername.setText("Username");
 
@@ -73,21 +98,21 @@ public class NewUserAccount extends javax.swing.JPanel {
                                 .addGap(159, 159, 159)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(51, 51, 51)
-                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(51, 51, 51)
-                                        .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(51, 51, 51)
                                         .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(51, 51, 51)
-                                        .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(51, 51, 51)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                                            .addComponent(cmbRole, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(262, 262, 262)
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -104,7 +129,7 @@ public class NewUserAccount extends javax.swing.JPanel {
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRole)
-                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsername)
@@ -123,18 +148,67 @@ public class NewUserAccount extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        nv.goBack();
+        callBack.refreshData();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        String selectedRoleStr = (String) cmbRole.getSelectedItem();
+        String username = txtUsername.getText();
+        String password = txtPwd.getText();
+        
+        if (selectedRoleStr.isEmpty() || username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please complete all fields!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        selectedRoleStr = ((String)cmbRole.getSelectedItem()).toUpperCase();
+        Role selectedRole = Role.valueOf(selectedRoleStr);
+        
+        // 
+        switch (selectedRole) {
+            case ADMIN:
+                userList.createAdmin(username, password, selectedRole);
+                break;
+            case BRANCH_MANAGER:
+                userList.createBranchManager(username, password, selectedRole);
+                break;
+            case CUSTOMER:
+                userList.createCustomer(username, password, selectedRole);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Unknown role selected!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+        }
+
+        JOptionPane.showMessageDialog(this, "User created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Reset fields
+        cmbRole.setSelectedIndex(-1);
+        txtUsername.setText("");
+        txtPwd.setText("");
+    }//GEN-LAST:event_btnAddActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JComboBox<String> cmbRole;
     private javax.swing.JLabel lblPwd;
     private javax.swing.JLabel lblRole;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUserID;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtPwd;
-    private javax.swing.JTextField txtRole;
     private javax.swing.JTextField txtUserID;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private void populateRoleComboBox() {
+        cmbRole.removeAllItems();
+        for (Role r : Role.values()) {
+            cmbRole.addItem(r.toString()); // Because I can't change the comboBox to accept object, so I have to use String.
+        }
+    }
 }

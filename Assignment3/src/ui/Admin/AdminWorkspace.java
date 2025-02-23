@@ -13,7 +13,7 @@ import utils.NavigationUtils;
  */
 public class AdminWorkspace extends javax.swing.JPanel {
     
-    UserDirectory userList;
+    
     NavigationUtils nv;
     
 

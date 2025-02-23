@@ -12,5 +12,15 @@ package common;
 public enum Role {
         ADMIN,
         BRANCH_MANAGER,
-        CUSTOMER
+        CUSTOMER;
+        
+        @Override
+        public String toString() {
+            switch(this) {
+                case ADMIN: return "ADMIN";
+                case CUSTOMER: return "CUSTOMER";
+                case BRANCH_MANAGER: return "BRANCH_MANAGER";
+                default: return "Unknown";
+            }
+        }
 }

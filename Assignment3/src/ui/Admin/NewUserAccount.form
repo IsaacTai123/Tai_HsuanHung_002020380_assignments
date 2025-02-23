@@ -34,16 +34,6 @@
                               <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblUsername" min="-2" pref="79" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                      <Component id="txtUsername" min="-2" pref="194" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblRole" min="-2" pref="79" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                      <Component id="txtRole" min="-2" pref="194" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblPwd" min="-2" pref="79" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                       <Component id="txtPwd" min="-2" pref="194" max="-2" attributes="0"/>
@@ -52,6 +42,17 @@
                                       <Component id="lblUserID" min="-2" pref="79" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                       <Component id="txtUserID" min="-2" pref="194" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblUsername" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <Component id="lblRole" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtUsername" pref="194" max="32767" attributes="0"/>
+                                          <Component id="cmbRole" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -77,7 +78,7 @@
               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblRole" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtRole" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbRole" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -115,6 +116,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;Back"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblRole">
       <Properties>
@@ -125,8 +129,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtRole">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblUsername">
       <Properties>
@@ -148,6 +153,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUserID">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbRole">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
