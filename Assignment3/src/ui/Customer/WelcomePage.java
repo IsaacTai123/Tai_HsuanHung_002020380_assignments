@@ -26,6 +26,7 @@ public class WelcomePage extends javax.swing.JPanel {
         this.nv = nv;
         this.userList = UserDirectory.getInstance();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
