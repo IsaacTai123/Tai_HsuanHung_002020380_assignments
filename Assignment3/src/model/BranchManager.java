@@ -12,13 +12,40 @@ import common.Role;
  */
 public class BranchManager extends UserProfile {
     
-    public BranchManager() {
-        super(); // Optional (Better to omit in this case)
-        this.role = Role.BRANCH_MANAGER;
-    }
+    private static char currentLetter = 'A';
+    private static int currentNumber = 0;
+    private String employeeID;
+    private String experience;
+    
     
     public BranchManager(String name, String pwd, Role role) {
         super(name, pwd, role);
+        this.employeeID = generateEmployeeID();
+    }
+    
+    public BranchManager() {
+        this("", "", null);
+    }
+    
+    private static String generateEmployeeID() {
+        if (currentNumber > 999) {
+            currentNumber = 0;
+            currentLetter++;
+        }
+        String id = String.format("%c%03d", currentLetter, currentNumber++);
+        return id;
+    }
+    
+    public String getEmployeeID() {
+        return employeeID;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
     }
     
     @Override

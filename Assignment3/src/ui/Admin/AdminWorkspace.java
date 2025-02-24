@@ -46,6 +46,11 @@ public class AdminWorkspace extends javax.swing.JPanel {
         });
 
         btnManageBranches.setText("Manage Branches");
+        btnManageBranches.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageBranchesActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -80,6 +85,11 @@ public class AdminWorkspace extends javax.swing.JPanel {
         ManageUserAccount mngUser = new ManageUserAccount(nv);
         nv.showCard(mngUser, "ManageUserAccount");
     }//GEN-LAST:event_btnManageUserAccountsActionPerformed
+
+    private void btnManageBranchesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageBranchesActionPerformed
+        ManageLibraryBranch mngLibrary = new ManageLibraryBranch(nv);
+        nv.showCard(mngLibrary, "ManageLibraryBranch");
+    }//GEN-LAST:event_btnManageBranchesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

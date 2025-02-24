@@ -55,4 +55,13 @@ public class UserDirectory {
     public ArrayList<IUserProfile> getAllUsers() {
         return userList;
     }
+    
+    public IUserProfile findUserByName(String name) {
+        for (IUserProfile user : userList) {
+            if (user.getName().equalsIgnoreCase(name)) {
+                return user;
+            }
+        }
+        return null;
+    }
 }

@@ -11,16 +11,51 @@ import java.util.ArrayList;
  * @author tisaac
  */
 public class Library {
-    private static int idCount = 1;
-    private int id;
+    private String name;
     private int buildingNo;
     private BranchManager manager;
     private BookCollection bookCollection;
     
-    public Library(int num, BranchManager m, BookCollection bc) {
-        this.id = idCount++;
-        buildingNo = num;
-        manager = m;
-        bookCollection = bc;
+    public Library(String name, int buildingNo, BranchManager manager) {
+        this.name = name;
+        this.buildingNo = buildingNo;
+        this.manager = manager;
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getBuildingNo() {
+        return buildingNo;
+    }
+
+    public void setBuildingNo(int buildingNo) {
+        this.buildingNo = buildingNo;
+    }
+
+    public BranchManager getManager() {
+        return manager;
+    }
+
+    public void setManager(BranchManager manager) {
+        this.manager = manager;
+    }
+
+    public BookCollection getBookCollection() {
+        return bookCollection;
+    }
+    
+    public void setBookCollection(BookCollection bookCollection) {
+        this.bookCollection = bookCollection;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
