@@ -22,13 +22,8 @@ import utils.NavigationUtils;
  */
 public class AdminWorkspace extends javax.swing.JPanel {
     
-    UserDirectory userList;
-    LibraryDirectory libList;
-    EmployeeDirectory emList;
-    BookCollection allBooks;
-    NavigationUtils nv;
-    AuthorDirectory authorList;
     
+    NavigationUtils nv;
 
     /**
      * Creates new form AdminWorkspace
@@ -36,7 +31,6 @@ public class AdminWorkspace extends javax.swing.JPanel {
     public AdminWorkspace(NavigationUtils nv) {
         initComponents();
         this.nv = nv;
-        fakeDataGenerator();
     }
 
     /**
@@ -112,50 +106,4 @@ public class AdminWorkspace extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 
-
-    private void fakeDataGenerator() {
-        try {
-            this.userList = UserDirectory.getInstance();
-            this.libList = LibraryDirectory.getInstance();
-            this.emList = EmployeeDirectory.getInstance();
-            this.allBooks = BookCollection.getInstance();
-            this.authorList = AuthorDirectory.getInstance();
-
-            // Branch Manager
-            BranchManager bm1 = userList.createBranchManager("Alice Johnson", "alicepwd", Role.BRANCH_MANAGER);
-            BranchManager bm2 = userList.createBranchManager("Bob Smith", "bobpwd", Role.BRANCH_MANAGER);
-
-            // Library
-            libList.addLibrary("Central Library", 101, bm1);
-            libList.addLibrary("Westside Library", 202, bm2);
-
-            // Admin
-            userList.createAdmin("AdminUser", "adminpwd", Role.ADMIN);
-
-            // Custom
-            userList.createCustomer("Tom Hanks", "tom123", Role.CUSTOMER);
-            userList.createCustomer("Emma Watson", "emma456", Role.CUSTOMER);
-            userList.createCustomer("Chris Evans", "chris789", Role.CUSTOMER);
-            
-            // Authors
-            Author jk = authorList.addAuthor("J.K. Rowling", "UK");
-            Author grr = authorList.addAuthor("George R.R. Martin", "USA");
-            Author hm = authorList.addAuthor("Haruki Murakami", "Japan");
-            Author ja = authorList.addAuthor("Jane Austen", "UK");
-            Author sk = authorList.addAuthor("Stephen King", "USA");
-
-            // Books
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-            allBooks.addNewBook("Harry Potter", sdf.parse("2024-01-01"), libList.getLibraryByName("Central Library"), jk, 200);
-            allBooks.addNewBook("Game of Thrones", sdf.parse("2024-01-02"), libList.getLibraryByName("Central Library"), grr, 100);
-            allBooks.addNewBook("Norwegian Wood", sdf.parse("2024-01-03"), libList.getLibraryByName("Westside Library"), hm, 1230);
-            allBooks.addNewBook("Pride and Prejudice", sdf.parse("2024-01-04"), libList.getLibraryByName("Westside Library"), jk, 2340);
-            allBooks.addNewBook("The Shining", sdf.parse("2024-01-05"), libList.getLibraryByName("Central Library"), jk, 999);
-            
-        } catch (Exception e) {
-            System.out.println("Error configuring system: " + e.getMessage());
-        }
-        
-    }
 }

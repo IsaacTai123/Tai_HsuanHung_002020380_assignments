@@ -20,7 +20,6 @@ import utils.NavigationUtils;
 public class ManageAuthor extends javax.swing.JPanel implements IDataRefreshCallback {
 
     NavigationUtils nv;
-    IDataRefreshCallback callBack;
     AuthorDirectory authorList;
     /**
      * Creates new form ManageAuthor
@@ -29,6 +28,7 @@ public class ManageAuthor extends javax.swing.JPanel implements IDataRefreshCall
         initComponents();
         this.nv = nv;
         this.authorList = AuthorDirectory.getInstance();
+        loadAuthorTable();
     }
 
     /**
@@ -146,7 +146,7 @@ public class ManageAuthor extends javax.swing.JPanel implements IDataRefreshCall
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
 
-        NewAuthor na = new NewAuthor(nv, callBack);
+        NewAuthor na = new NewAuthor(nv, this);
         nv.showCard(na, "NewAuthor");
     }//GEN-LAST:event_btnNewActionPerformed
 
@@ -179,6 +179,7 @@ public class ManageAuthor extends javax.swing.JPanel implements IDataRefreshCall
             model.addRow(row);
         }
     }
+    
     
     @Override
     public void refreshData() {

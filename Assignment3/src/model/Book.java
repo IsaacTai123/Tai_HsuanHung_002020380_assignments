@@ -22,13 +22,15 @@ public class Book {
     private double price;
     private Library library;
     
-    public Book(String name, Date registeredDate, Library library, Author author, double price) {
+    public Book(String name, Date registeredDate, Library library, Author author, double price, String language, short numOfPage) {
         this.serialNum = generateRandomSerialNumber(8); // Assign a unique serial number
         this.name = name;
         this.library = library;
         this.registeredDate = registeredDate;
         this.author = author;
         this.price = price;
+        this.language = language;
+        this.numberOfPages = numOfPage;
     }
     
     public Book() {

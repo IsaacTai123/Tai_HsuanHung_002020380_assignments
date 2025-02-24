@@ -88,4 +88,9 @@ public class RentalRequest {
         this.library = library;
     }
     
+    @Override
+    public String toString() {
+        return requestID;
+    }
+    
 }

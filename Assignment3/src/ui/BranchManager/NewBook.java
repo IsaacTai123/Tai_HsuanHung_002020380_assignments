@@ -12,7 +12,6 @@ import model.AuthorDirectory;
 import model.Book;
 import model.BookCollection;
 import model.Library;
-import model.LibraryDirectory;
 import utils.NavigationUtils;
 
 /**
@@ -251,9 +250,9 @@ public class NewBook extends javax.swing.JPanel {
             return;
         }
 
-        Book newBook = allBooks.addNewBook(bookName, registeredDate, selectedLib, author, price);
-        newBook.setNumberOfPages(numOfPage);
-        newBook.setLanguage(language);
+        Book newBook = allBooks.addNewBook(bookName, registeredDate, selectedLib, author, price, language, numOfPage);
+        author.addBooks(newBook);
+        
 
         JOptionPane.showMessageDialog(this, "Book added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
 

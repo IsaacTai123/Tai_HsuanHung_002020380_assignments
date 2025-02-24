@@ -27,8 +27,8 @@ public class BookCollection {
         return instance;
     }
     
-    public Book addNewBook(String name, Date registeredDate, Library library, Author author, double price) {
-        Book b = new Book(name, registeredDate, library, author, price);
+    public Book addNewBook(String name, Date registeredDate, Library library, Author author, double price, String language, short numOfPage) {
+        Book b = new Book(name, registeredDate, library, author, price, language, numOfPage);
         allBooks.add(b);
         return b;
     }
@@ -59,5 +59,15 @@ public class BookCollection {
             }
         }
         return null;
+    }
+    
+    public ArrayList<Book> searchBookByAuthor(String name) {
+        ArrayList<Book> books = new ArrayList<>();
+        for (Book b : allBooks) {
+            if (b.getName().equals(name)) {
+                books.add(b);
+            }
+        }
+        return books;
     }
 }

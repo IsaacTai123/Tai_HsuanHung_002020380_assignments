@@ -128,7 +128,7 @@ public class NewAuthor extends javax.swing.JPanel {
             return;
         }
 
-        authorList.addAuthor(authorName, nationality);
+        authorList.addAuthor(authorName, nationality, null);
         JOptionPane.showMessageDialog(this, "Author added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         txtAuthor.setText("");

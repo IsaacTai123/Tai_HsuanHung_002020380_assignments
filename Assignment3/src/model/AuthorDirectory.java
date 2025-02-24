@@ -26,8 +26,8 @@ public class AuthorDirectory {
         return instance;
     }
 
-    public Author addAuthor(String name, String nationality) {
-        Author author = new Author(name, nationality);
+    public Author addAuthor(String name, String nationality, ArrayList<Book> books) {
+        Author author = new Author(name, nationality, books);
         authorList.add(author);
         return author;
     }

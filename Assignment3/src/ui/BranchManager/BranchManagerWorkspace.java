@@ -4,6 +4,7 @@
  */
 package ui.BranchManager;
 
+import model.BranchManager;
 import model.Library;
 import utils.NavigationUtils;
 
@@ -66,6 +67,11 @@ public class BranchManagerWorkspace extends javax.swing.JPanel {
         });
 
         btnViewRevenue.setText("View Revenue");
+        btnViewRevenue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewRevenueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,9 +118,14 @@ public class BranchManagerWorkspace extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageAuthorsActionPerformed
 
     private void btnManageRentalRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRentalRequestsActionPerformed
-        ManageRentalRequests mrr = new ManageRentalRequests(nv);
+        ManageRentalRequests mrr = new ManageRentalRequests(nv, selectedLib);
         nv.showCard(mrr, "ManageRentalRequest");
     }//GEN-LAST:event_btnManageRentalRequestsActionPerformed
+
+    private void btnViewRevenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRevenueActionPerformed
+        ViewRevenue vr = new ViewRevenue(nv, selectedLib);
+        nv.showCard(vr, "ViewRevenue");
+    }//GEN-LAST:event_btnViewRevenueActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

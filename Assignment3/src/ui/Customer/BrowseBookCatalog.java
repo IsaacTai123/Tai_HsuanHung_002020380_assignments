@@ -15,6 +15,7 @@ import model.LibraryDirectory;
 import model.RentalRequest;
 import model.RentalRequestDirectory;
 import model.UserDirectory;
+import ui.BranchManager.ViewBookDetail;
 import utils.NavigationUtils;
 
 /**
@@ -29,6 +30,7 @@ public class BrowseBookCatalog extends javax.swing.JPanel {
     LibraryDirectory libList;
     UserDirectory userList;
     Customer currentCustomer;
+    Library selectedLib;
     
     /**
      * Creates new form BrowseBookCatalog
@@ -109,6 +111,11 @@ public class BrowseBookCatalog extends javax.swing.JPanel {
         }
 
         btnViewDetail.setText("View Book Detail");
+        btnViewDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewDetailActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -185,20 +192,19 @@ public class BrowseBookCatalog extends javax.swing.JPanel {
     private void cmbLibraryBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLibraryBranchActionPerformed
         String selectedLibName = (String) cmbLibraryBranch.getSelectedItem();
         Library selectedLib = libList.getLibraryByName(selectedLibName);
-        refreshBookTable(selectedLib);
+        this.selectedLib = selectedLib;
+        loadBookTable();
     }//GEN-LAST:event_cmbLibraryBranchActionPerformed
 
     private void btnSearchBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchBookActionPerformed
-        String selectedLibraryName = (String) cmbLibraryBranch.getSelectedItem();
         String searchKeyword = txtSearchBook.getText().trim();
 
-        if (selectedLibraryName == null || selectedLibraryName.isEmpty()) {
+        if (selectedLib == null) {
             JOptionPane.showMessageDialog(this, "Please select a library branch first!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Library selectedLibrary = libList.getLibraryByName(selectedLibraryName);
-        searchBookByName(searchKeyword, selectedLibrary);
+        searchBookByName(searchKeyword, selectedLib);
     }//GEN-LAST:event_btnSearchBookActionPerformed
 
     private void btnRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentActionPerformed
@@ -209,22 +215,32 @@ public class BrowseBookCatalog extends javax.swing.JPanel {
             return;
         }
 
-        String serialNum = (String) tblBooks.getValueAt(selectedRow, 0);
-        Book selectedBook = BookCollection.getInstance().searchBookBySerialNumber(serialNum);
+        Book selectedBook = (Book) tblBooks.getValueAt(selectedRow, 0);
 
         if (!selectedBook.isIsAvailable()) {
             JOptionPane.showMessageDialog(this, "This book is currently unavailable.", "Unavailable", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        Library selectedLibrary = selectedBook.getLibrary();
-
         // Create a pending RentalRequest
-        RentalRequest newRequest = requestList.createRequest(
-            currentCustomer, selectedBook, selectedLibrary, selectedBook.getPrice());
+        requestList.createRequest(currentCustomer, selectedBook, selectedLib, selectedBook.getPrice());
+        selectedBook.setIsAvailable(false);
 
         JOptionPane.showMessageDialog(this, "Rental request sent successfully! Please wait for approval.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        loadBookTable();
     }//GEN-LAST:event_btnRentActionPerformed
+
+    private void btnViewDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailActionPerformed
+        int selectedRow = tblBooks.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select the item first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Book b = (Book) tblBooks.getValueAt(selectedRow, 0);
+        ViewBookDetail vb = new ViewBookDetail(nv, b);
+        nv.showCard(vb, "ViewBookDetail");
+    }//GEN-LAST:event_btnViewDetailActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -240,14 +256,14 @@ public class BrowseBookCatalog extends javax.swing.JPanel {
     private javax.swing.JTextField txtSearchBook;
     // End of variables declaration//GEN-END:variables
 
-    private void refreshBookTable(Library selectedLibrary) {
+    private void loadBookTable() {
         DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
         model.setRowCount(0);
 
-        if (selectedLibrary != null) {
-            for (Book book : allBooks.getBooksByLibrary(selectedLibrary)) {
+        if (selectedLib != null) {
+            for (Book book : allBooks.getBooksByLibrary(selectedLib)) {
                 Object[] row = new Object[4];
-                row[0] = book.getSerialNum();
+                row[0] = book;
                 row[1] = book.getName();
                 row[2] = book.getPrice();
                 row[3] = book.isIsAvailable() ? "Available" : "Unavailable";
@@ -257,16 +273,16 @@ public class BrowseBookCatalog extends javax.swing.JPanel {
         }
     }
     
-    private void searchBookByName(String bookName, Library selectedLibrary) {
+    private void searchBookByName(String bookName, Library selectedLib) {
         DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
         model.setRowCount(0);
 
-        if (selectedLibrary != null) {
-            for (Book book : allBooks.getBooksByLibrary(selectedLibrary)) {
+        if (selectedLib != null) {
+            for (Book book : allBooks.getBooksByLibrary(selectedLib)) {
                 if (book.getName().toLowerCase().contains(bookName.toLowerCase())) {
                     Object[] row = new Object[4];
                     
-                    row[0] = book.getSerialNum();
+                    row[0] = book;
                     row[1] = book.getName();
                     row[2] = book.getPrice();
                     row[3] = book.isIsAvailable() ? "Available" : "Unavailable";

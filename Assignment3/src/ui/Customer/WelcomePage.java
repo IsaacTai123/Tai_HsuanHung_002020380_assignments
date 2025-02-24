@@ -41,8 +41,8 @@ public class WelcomePage extends javax.swing.JPanel {
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         lblPwd = new javax.swing.JLabel();
-        txtPwd = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
+        ptxtPwd = new javax.swing.JPasswordField();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -74,10 +74,10 @@ public class WelcomePage extends javax.swing.JPanel {
                             .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 155, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .addComponent(ptxtPwd))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(270, 270, 270)
@@ -95,8 +95,8 @@ public class WelcomePage extends javax.swing.JPanel {
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPwd))
+                    .addComponent(lblPwd)
+                    .addComponent(ptxtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addComponent(btnLogin)
                 .addContainerGap(223, Short.MAX_VALUE))
@@ -105,9 +105,9 @@ public class WelcomePage extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = txtUsername.getText().trim();
-        String password = txtPwd.getText().trim();
+        char[] password = ptxtPwd.getPassword();
 
-        if (username.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || password.length == 0) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -127,7 +127,7 @@ public class WelcomePage extends javax.swing.JPanel {
 
         Customer cs = (Customer) user;
 
-        if (!cs.getPwd().equals(password)) {
+        if (!cs.getPwd().equals(new String(password))) {
             JOptionPane.showMessageDialog(this, "Incorrect password!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -138,7 +138,7 @@ public class WelcomePage extends javax.swing.JPanel {
         nv.showCard(cWork, "CustomerWorkspace");
 
         txtUsername.setText("");
-        txtPwd.setText("");
+        ptxtPwd.setText("");
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
@@ -147,7 +147,7 @@ public class WelcomePage extends javax.swing.JPanel {
     private javax.swing.JLabel lblPwd;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.JTextField txtPwd;
+    private javax.swing.JPasswordField ptxtPwd;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

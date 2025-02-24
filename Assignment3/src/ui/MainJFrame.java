@@ -4,9 +4,18 @@
  */
 package ui;
 
+import common.Role;
 import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
+import model.Author;
+import model.AuthorDirectory;
+import model.Book;
+import model.BookCollection;
+import model.BranchManager;
 import model.CustomerDirectory;
+import model.EmployeeDirectory;
+import model.LibraryDirectory;
 import model.UserDirectory;
 import org.w3c.dom.UserDataHandler;
 import ui.Admin.AdminWorkspace;
@@ -23,6 +32,11 @@ import utils.NavigationUtils;
 public class MainJFrame extends javax.swing.JFrame {
     
     NavigationUtils nv;
+    AuthorDirectory authorList;
+    UserDirectory userList;
+    LibraryDirectory libList;
+    EmployeeDirectory emList;
+    BookCollection allBooks;
     
     /**
      * Creates new form MainJFrame
@@ -30,6 +44,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         nv = new NavigationUtils(WorkArea);
+        fakeDataGenerator();
     }
 
     /**
@@ -186,4 +201,55 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     
+    private void fakeDataGenerator() {
+        try {
+            this.userList = UserDirectory.getInstance();
+            this.libList = LibraryDirectory.getInstance();
+            this.emList = EmployeeDirectory.getInstance();
+            this.allBooks = BookCollection.getInstance();
+            this.authorList = AuthorDirectory.getInstance();
+
+            // Branch Manager
+            BranchManager bm1 = userList.createBranchManager("Alice Johnson", "alicepwd", Role.BRANCH_MANAGER);
+            BranchManager bm2 = userList.createBranchManager("Bob Smith", "bobpwd", Role.BRANCH_MANAGER);
+
+            // Library
+            libList.addLibrary("Central Library", 101, bm1);
+            libList.addLibrary("Westside Library", 202, bm2);
+
+            // Admin
+            userList.createAdmin("AdminUser", "adminpwd", Role.ADMIN);
+
+            // Custom
+            userList.createCustomer("Tom Hanks", "tom123", Role.CUSTOMER);
+            userList.createCustomer("Emma Watson", "emma456", Role.CUSTOMER);
+            userList.createCustomer("Chris Evans", "chris789", Role.CUSTOMER);
+            
+            // Authors
+            Author jk = authorList.addAuthor("J.K. Rowling", "UK", null);
+            Author grr = authorList.addAuthor("George R.R. Martin", "USA", null);
+            Author hm = authorList.addAuthor("Haruki Murakami", "Japan", null);
+            Author ja = authorList.addAuthor("Jane Austen", "UK", null);
+            Author sk = authorList.addAuthor("Stephen King", "USA", null);
+
+            // Books
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            Book b1 = allBooks.addNewBook("Harry Potter", sdf.parse("2024-01-01"), libList.getLibraryByName("Central Library"), jk, 200, "English", (short)123);
+            Book b2 = allBooks.addNewBook("Game of Thrones", sdf.parse("2024-01-02"), libList.getLibraryByName("Central Library"), grr, 100, "Frensh", (short)234);
+            Book b3 = allBooks.addNewBook("Norwegian Wood", sdf.parse("2024-01-03"), libList.getLibraryByName("Westside Library"), hm, 1230, "Mandaran", (short)10);
+            Book b4 = allBooks.addNewBook("Pride and Prejudice", sdf.parse("2024-01-04"), libList.getLibraryByName("Westside Library"), jk, 2340, "Japanese", (short)132);
+            Book b5 = allBooks.addNewBook("The Shining", sdf.parse("2024-01-05"), libList.getLibraryByName("Central Library"), jk, 999, "Cantonese", (short)333);
+            
+            jk.getBooks().add(b1);
+            grr.getBooks().add(b2);
+            hm.getBooks().add(b3);
+            jk.getBooks().add(b4);
+            jk.getBooks().add(b5);
+            
+        } catch (Exception e) {
+            System.out.println("Error configuring system: " + e.getMessage());
+        }
+        
+    }
 }

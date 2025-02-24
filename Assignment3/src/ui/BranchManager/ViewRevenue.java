@@ -4,17 +4,32 @@
  */
 package ui.BranchManager;
 
+import common.RequestStatus;
+import javax.swing.table.DefaultTableModel;
+import model.Library;
+import model.RentalRequest;
+import model.RentalRequestDirectory;
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
 public class ViewRevenue extends javax.swing.JPanel {
 
+    NavigationUtils nv;
+    Library selectedLib;
+    RentalRequestDirectory requestList;
+    double totalRevenue;
     /**
      * Creates new form ViewRevenue
      */
-    public ViewRevenue() {
+    public ViewRevenue(NavigationUtils nv, Library lib) {
         initComponents();
+        this.nv = nv;
+        this.selectedLib = lib;
+        this.requestList = RentalRequestDirectory.getInstance();
+        populateRentalRequestTable();
     }
 
     /**
@@ -38,6 +53,11 @@ public class ViewRevenue extends javax.swing.JPanel {
         lblTitle.setText("View Revenue");
 
         btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         tblRentalRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,7 +80,7 @@ public class ViewRevenue extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblRentalRequests);
 
-        lblViewRevenue.setText("View Revenue: ");
+        lblViewRevenue.setText("Total Revenue: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -71,10 +91,9 @@ public class ViewRevenue extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(557, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(0, 551, Short.MAX_VALUE))
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -102,6 +121,10 @@ public class ViewRevenue extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        nv.goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -111,4 +134,27 @@ public class ViewRevenue extends javax.swing.JPanel {
     private javax.swing.JTable tblRentalRequests;
     private javax.swing.JTextField txtViewRevenue;
     // End of variables declaration//GEN-END:variables
+
+    private void populateRentalRequestTable() {
+        DefaultTableModel model = (DefaultTableModel) tblRentalRequests.getModel();
+        model.setRowCount(0);
+
+        for (RentalRequest request : requestList.getRequestsByLibrary(selectedLib)) {
+
+            if(request.getStatus() == RequestStatus.Accepted) {
+                Object[] row = new Object[5];
+
+                row[0] = request;
+                row[1] = request.getBook().getName();
+                row[2] = request.getCustomer().getName();
+                row[3] = request.getStatus().toString();
+                row[4] = request.getPrice();
+                totalRevenue += request.getPrice();
+                
+                model.addRow(row);
+            }
+        }
+        
+        txtViewRevenue.setText(String.valueOf(totalRevenue));
+    }
 }

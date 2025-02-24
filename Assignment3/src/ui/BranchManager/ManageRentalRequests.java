@@ -4,8 +4,15 @@
  */
 package ui.BranchManager;
 
+import common.RequestStatus;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Book;
 import model.BookCollection;
+import model.BranchManager;
 import model.Library;
+import model.RentalRequest;
+import model.RentalRequestDirectory;
 import utils.NavigationUtils;
 
 /**
@@ -17,12 +24,17 @@ public class ManageRentalRequests extends javax.swing.JPanel {
     NavigationUtils nv;
     BookCollection allBooks;
     Library selectedLib;
+    RentalRequestDirectory requestList;
+    
     /**
      * Creates new form ManageRentalRequests
      */
-    public ManageRentalRequests(NavigationUtils nv) {
+    public ManageRentalRequests(NavigationUtils nv, Library selectedLib) {
         initComponents();
         this.nv = nv;
+        this.selectedLib = selectedLib;
+        requestList = RentalRequestDirectory.getInstance();
+        populateRentalRequestTable();
     }
 
     /**
@@ -42,8 +54,18 @@ public class ManageRentalRequests extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
 
         btnAccept.setText("Accept");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         tblRentalRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,6 +96,11 @@ public class ManageRentalRequests extends javax.swing.JPanel {
         }
 
         btnReject.setText("Reject");
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -116,6 +143,55 @@ public class ManageRentalRequests extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        int selectedRow = tblRentalRequests.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Select a request first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        RentalRequest request = (RentalRequest) tblRentalRequests.getValueAt(selectedRow, 0);
+
+        request.setStatus(RequestStatus.Accepted);
+
+        // Update book status prevent someone else to rent
+        Book rentedBook = request.getBook();
+        rentedBook.setIsAvailable(false);
+
+        JOptionPane.showMessageDialog(this, "Request accepted successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Refresh table
+        populateRentalRequestTable();
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        int selectedRow = tblRentalRequests.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a request first.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        RentalRequest request = (RentalRequest) tblRentalRequests.getValueAt(selectedRow, 0);
+
+        if (request.getStatus() != RequestStatus.Pending) {
+            JOptionPane.showMessageDialog(this, "This request has already been processed.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Book rentedBook = request.getBook();
+        rentedBook.setIsAvailable(true);
+        
+        request.setStatus(RequestStatus.Rejected);
+        JOptionPane.showMessageDialog(this, "Request rejected successfully!", "Rejected", JOptionPane.INFORMATION_MESSAGE);
+
+        // Refresh table
+        populateRentalRequestTable();
+    }//GEN-LAST:event_btnRejectActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        nv.goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAccept;
@@ -125,4 +201,23 @@ public class ManageRentalRequests extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblRentalRequests;
     // End of variables declaration//GEN-END:variables
+
+    private void populateRentalRequestTable() {
+        DefaultTableModel model = (DefaultTableModel) tblRentalRequests.getModel();
+        model.setRowCount(0);
+
+        for (RentalRequest request : requestList.getRequestsByLibrary(selectedLib)) {
+
+            if(request.getStatus() == RequestStatus.Pending) {
+                Object[] row = new Object[5];
+
+                row[0] = request;
+                row[1] = request.getBook().getName();
+                row[2] = request.getCustomer().getName();
+                row[3] = request.getStatus().toString();
+                row[4] = request.getPrice();
+                model.addRow(row);
+            }
+        }
+    }
 }

@@ -4,17 +4,30 @@
  */
 package ui.Customer;
 
+import javax.swing.table.DefaultTableModel;
+import model.Book;
+import model.Library;
+import model.LibraryDirectory;
+import model.RentalRequest;
+import model.RentalRequestDirectory;
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
 public class ViewRentalHistory extends javax.swing.JPanel {
 
+    NavigationUtils nv;
+    RentalRequestDirectory requestList;
     /**
      * Creates new form ViewRentalHistory
      */
-    public ViewRentalHistory() {
+    public ViewRentalHistory(NavigationUtils nv) {
         initComponents();
+        this.nv = nv;
+        this.requestList = RentalRequestDirectory.getInstance();
+        loadBookTable();
     }
 
     /**
@@ -27,11 +40,11 @@ public class ViewRentalHistory extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblBooks = new javax.swing.JTable();
+        tblRentalHistory = new javax.swing.JTable();
         lblTitle = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
-        tblBooks.setModel(new javax.swing.table.DefaultTableModel(
+        tblRentalHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -50,11 +63,11 @@ public class ViewRentalHistory extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblBooks);
-        if (tblBooks.getColumnModel().getColumnCount() > 0) {
-            tblBooks.getColumnModel().getColumn(0).setResizable(false);
-            tblBooks.getColumnModel().getColumn(1).setResizable(false);
-            tblBooks.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tblRentalHistory);
+        if (tblRentalHistory.getColumnModel().getColumnCount() > 0) {
+            tblRentalHistory.getColumnModel().getColumn(0).setResizable(false);
+            tblRentalHistory.getColumnModel().getColumn(1).setResizable(false);
+            tblRentalHistory.getColumnModel().getColumn(3).setResizable(false);
         }
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
@@ -62,6 +75,11 @@ public class ViewRentalHistory extends javax.swing.JPanel {
         lblTitle.setText("View Rental History");
 
         btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,11 +111,35 @@ public class ViewRentalHistory extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        nv.goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTable tblBooks;
+    private javax.swing.JTable tblRentalHistory;
     // End of variables declaration//GEN-END:variables
+
+
+    private void loadBookTable() {
+        DefaultTableModel model = (DefaultTableModel) tblRentalHistory.getModel();
+        model.setRowCount(0);
+
+        if (tblRentalHistory != null) {
+            for (RentalRequest request : requestList.getAllRequests()) {
+                Book b = request.getBook();
+                
+                Object[] row = new Object[4];
+                row[0] = request;
+                row[1] = b.getSerialNum();
+                row[2] = b.getName();
+                row[3] = request.getStatus().toString();
+
+                model.addRow(row);
+            }
+        }
+    }
 }

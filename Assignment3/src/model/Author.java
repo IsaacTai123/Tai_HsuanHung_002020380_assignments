@@ -15,10 +15,14 @@ public class Author {
     private String nationality;
     private ArrayList<Book> books;
     
-    public Author(String name, String nationality) {
+    public Author(String name, String nationality, ArrayList<Book> books) {
         this.name = name;
         this.nationality = nationality;
-        this.books = new ArrayList<>();
+        this.books = (books != null) ? books : new ArrayList<>();
+    }
+    
+    public Author(String name, String nationality) {
+        this(name, nationality, new ArrayList<>());
     }
     
     public String getName() {
@@ -43,6 +47,10 @@ public class Author {
 
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
+    }
+    
+    public void addBooks(Book book) {
+        books.add(book);
     }
     
     @Override

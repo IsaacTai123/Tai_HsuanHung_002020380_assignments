@@ -39,6 +39,11 @@ public class CustomerWorkspace extends javax.swing.JPanel {
         btnCustomerBookCatalog = new javax.swing.JButton();
 
         btnRentalHistory.setText("View Rental History");
+        btnRentalHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRentalHistoryActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -79,6 +84,11 @@ public class CustomerWorkspace extends javax.swing.JPanel {
         BrowseBookCatalog bbCatalog = new BrowseBookCatalog(nv, customer);
         nv.showCard(bbCatalog, "BrowseBookCatalog");
     }//GEN-LAST:event_btnCustomerBookCatalogActionPerformed
+
+    private void btnRentalHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRentalHistoryActionPerformed
+        ViewRentalHistory vrh = new ViewRentalHistory(nv);
+        nv.showCard(vrh, "ViewRentalHistory");
+    }//GEN-LAST:event_btnRentalHistoryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

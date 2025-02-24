@@ -48,8 +48,8 @@ public class ManagerLogin extends javax.swing.JPanel {
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         lblPwd = new javax.swing.JLabel();
-        txtPwd = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
+        ptxtPwd = new javax.swing.JPasswordField();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,9 +95,10 @@ public class ManagerLogin extends javax.swing.JPanel {
                                 .addComponent(lblLibraryBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbLibraryBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbLibraryBranch, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(ptxtPwd, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -120,24 +121,24 @@ public class ManagerLogin extends javax.swing.JPanel {
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPwd))
-                .addGap(53, 53, 53)
+                    .addComponent(lblPwd)
+                    .addComponent(ptxtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addComponent(btnLogin)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbLibraryBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLibraryBranchActionPerformed
-        populateLibraryBranchs();
+        
     }//GEN-LAST:event_cmbLibraryBranchActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = txtUsername.getText().trim();
-        String password = txtPwd.getText().trim();
+        char[] password = ptxtPwd.getPassword();
         String selectedLibraryBranch = (String) cmbLibraryBranch.getSelectedItem();
 
-        if (username.isEmpty() || password.isEmpty() || selectedLibraryBranch == null) {
+        if (username.isEmpty() || password.length == 0 || selectedLibraryBranch == null) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -157,7 +158,7 @@ public class ManagerLogin extends javax.swing.JPanel {
 
         BranchManager branchManager = (BranchManager) user;
 
-        if (!branchManager.getPwd().equals(password)) {
+        if (!branchManager.getPwd().equals(new String(password))) {
             JOptionPane.showMessageDialog(this, "Incorrect password!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -176,7 +177,7 @@ public class ManagerLogin extends javax.swing.JPanel {
         nv.showCard(mngWork, "BranchMngWorkspace");
 
         txtUsername.setText("");
-        txtPwd.setText("");
+        ptxtPwd.setText("");
         cmbLibraryBranch.setSelectedIndex(-1);
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -188,7 +189,7 @@ public class ManagerLogin extends javax.swing.JPanel {
     private javax.swing.JLabel lblPwd;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.JTextField txtPwd;
+    private javax.swing.JPasswordField ptxtPwd;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
