@@ -7,6 +7,7 @@ package ui.Admin;
 import common.Role;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import model.Author;
 import model.AuthorDirectory;
 import model.BookCollection;
 import model.BranchManager;
@@ -137,20 +138,20 @@ public class AdminWorkspace extends javax.swing.JPanel {
             userList.createCustomer("Chris Evans", "chris789", Role.CUSTOMER);
             
             // Authors
-            authorList.addAuthor("J.K. Rowling", "UK");
-            authorList.addAuthor("George R.R. Martin", "USA");
-            authorList.addAuthor("Haruki Murakami", "Japan");
-            authorList.addAuthor("Jane Austen", "UK");
-            authorList.addAuthor("Stephen King", "USA");
+            Author jk = authorList.addAuthor("J.K. Rowling", "UK");
+            Author grr = authorList.addAuthor("George R.R. Martin", "USA");
+            Author hm = authorList.addAuthor("Haruki Murakami", "Japan");
+            Author ja = authorList.addAuthor("Jane Austen", "UK");
+            Author sk = authorList.addAuthor("Stephen King", "USA");
 
             // Books
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-            allBooks.addNewBook("Harry Potter", sdf.parse("2024-01-01"), libList.getLibraryByName("Central Library"));
-            allBooks.addNewBook("Game of Thrones", sdf.parse("2024-01-02"), libList.getLibraryByName("Central Library"));
-            allBooks.addNewBook("Norwegian Wood", sdf.parse("2024-01-03"), libList.getLibraryByName("Westside Library"));
-            allBooks.addNewBook("Pride and Prejudice", sdf.parse("2024-01-04"), libList.getLibraryByName("Westside Library"));
-            allBooks.addNewBook("The Shining", sdf.parse("2024-01-05"), libList.getLibraryByName("Central Library"));
+            allBooks.addNewBook("Harry Potter", sdf.parse("2024-01-01"), libList.getLibraryByName("Central Library"), jk, 200);
+            allBooks.addNewBook("Game of Thrones", sdf.parse("2024-01-02"), libList.getLibraryByName("Central Library"), grr, 100);
+            allBooks.addNewBook("Norwegian Wood", sdf.parse("2024-01-03"), libList.getLibraryByName("Westside Library"), hm, 1230);
+            allBooks.addNewBook("Pride and Prejudice", sdf.parse("2024-01-04"), libList.getLibraryByName("Westside Library"), jk, 2340);
+            allBooks.addNewBook("The Shining", sdf.parse("2024-01-05"), libList.getLibraryByName("Central Library"), jk, 999);
             
         } catch (Exception e) {
             System.out.println("Error configuring system: " + e.getMessage());

@@ -6,6 +6,7 @@ package ui.BranchManager;
 
 import interfaces.IDataRefreshCallback;
 import interfaces.IUserProfile;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Book;
 import model.BookCollection;
@@ -87,8 +88,18 @@ public class ManageBooks extends javax.swing.JPanel implements IDataRefreshCallb
         }
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnViewDetail.setText("View Detail");
+        btnViewDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewDetailActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -155,8 +166,33 @@ public class ManageBooks extends javax.swing.JPanel implements IDataRefreshCallb
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnNewBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewBookActionPerformed
-       
+        NewBook nb = new NewBook(nv, this, selectedLib);
+        nv.showCard(nb, "NewBook");
     }//GEN-LAST:event_btnNewBookActionPerformed
+
+    private void btnViewDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailActionPerformed
+        int selectedRow = tblBooks.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select the item first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Book b = (Book) tblBooks.getValueAt(selectedRow, 0);
+        ViewBookDetail vb = new ViewBookDetail(nv, b);
+        nv.showCard(vb, "ViewBookDetail");
+    }//GEN-LAST:event_btnViewDetailActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int selectedRow = tblBooks.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select the item first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Book b = (Book) tblBooks.getValueAt(selectedRow, 0);
+        allBooks.removeBook(b);
+        loadBooksTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

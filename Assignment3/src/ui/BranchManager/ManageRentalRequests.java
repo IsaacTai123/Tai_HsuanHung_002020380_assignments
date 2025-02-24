@@ -4,17 +4,25 @@
  */
 package ui.BranchManager;
 
+import model.BookCollection;
+import model.Library;
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
 public class ManageRentalRequests extends javax.swing.JPanel {
 
+    NavigationUtils nv;
+    BookCollection allBooks;
+    Library selectedLib;
     /**
      * Creates new form ManageRentalRequests
      */
-    public ManageRentalRequests() {
+    public ManageRentalRequests(NavigationUtils nv) {
         initComponents();
+        this.nv = nv;
     }
 
     /**

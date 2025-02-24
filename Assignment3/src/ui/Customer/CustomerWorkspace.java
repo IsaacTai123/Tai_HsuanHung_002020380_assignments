@@ -4,6 +4,7 @@
  */
 package ui.Customer;
 
+import model.Customer;
 import utils.NavigationUtils;
 
 /**
@@ -13,13 +14,15 @@ import utils.NavigationUtils;
 public class CustomerWorkspace extends javax.swing.JPanel {
 
     NavigationUtils nv;
+    Customer customer;
     
     /**
      * Creates new form CustomerWorkspace
      */
-    public CustomerWorkspace(NavigationUtils nv) {
+    public CustomerWorkspace(NavigationUtils nv, Customer cs) {
         initComponents();
         this.nv = nv;
+        this.customer = cs;
     }
 
     /**
@@ -42,6 +45,11 @@ public class CustomerWorkspace extends javax.swing.JPanel {
         lblTitle.setText("Customer Workspace");
 
         btnCustomerBookCatalog.setText("Browse Book Catalog");
+        btnCustomerBookCatalog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCustomerBookCatalogActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,6 +74,11 @@ public class CustomerWorkspace extends javax.swing.JPanel {
                 .addContainerGap(372, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCustomerBookCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerBookCatalogActionPerformed
+        BrowseBookCatalog bbCatalog = new BrowseBookCatalog(nv, customer);
+        nv.showCard(bbCatalog, "BrowseBookCatalog");
+    }//GEN-LAST:event_btnCustomerBookCatalogActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

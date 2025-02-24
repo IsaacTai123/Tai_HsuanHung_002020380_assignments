@@ -12,20 +12,23 @@ import java.util.Random;
  * @author tisaac
  */
 public class Book {
-    private String author;
+    private Author author;
     private String serialNum;
     private String name;
     private Date registeredDate;
     private boolean isAvailable = true;
     private short numberOfPages;
     private String language;
+    private double price;
     private Library library;
     
-    public Book(String name, Date registeredDate, Library library) {
+    public Book(String name, Date registeredDate, Library library, Author author, double price) {
         this.serialNum = generateRandomSerialNumber(8); // Assign a unique serial number
         this.name = name;
         this.library = library;
         this.registeredDate = registeredDate;
+        this.author = author;
+        this.price = price;
     }
     
     public Book() {
@@ -46,11 +49,11 @@ public class Book {
         return serial.toString();
     }
     
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
@@ -96,6 +99,14 @@ public class Book {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+    
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public Library getLibrary() {

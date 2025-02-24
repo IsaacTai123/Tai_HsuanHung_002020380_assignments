@@ -52,8 +52,18 @@ public class BranchManagerWorkspace extends javax.swing.JPanel {
         });
 
         btnManageAuthors.setText("Manage Authors");
+        btnManageAuthors.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageAuthorsActionPerformed(evt);
+            }
+        });
 
         btnManageRentalRequests.setText("Manage Rental Requests");
+        btnManageRentalRequests.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageRentalRequestsActionPerformed(evt);
+            }
+        });
 
         btnViewRevenue.setText("View Revenue");
 
@@ -95,6 +105,16 @@ public class BranchManagerWorkspace extends javax.swing.JPanel {
         ManageBooks mb = new ManageBooks(nv, selectedLib);
         nv.showCard(mb, "ManageBooks");
     }//GEN-LAST:event_btnManageBooksActionPerformed
+
+    private void btnManageAuthorsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAuthorsActionPerformed
+        ManageAuthor ma = new ManageAuthor(nv);
+        nv.showCard(ma, "ManageAuthor");
+    }//GEN-LAST:event_btnManageAuthorsActionPerformed
+
+    private void btnManageRentalRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRentalRequestsActionPerformed
+        ManageRentalRequests mrr = new ManageRentalRequests(nv);
+        nv.showCard(mrr, "ManageRentalRequest");
+    }//GEN-LAST:event_btnManageRentalRequestsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

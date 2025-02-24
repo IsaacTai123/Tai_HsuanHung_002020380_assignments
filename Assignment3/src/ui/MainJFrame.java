@@ -13,6 +13,7 @@ import ui.Admin.AdminWorkspace;
 import ui.BranchManager.BranchManagerWorkspace;
 import ui.BranchManager.ManagerLogin;
 import ui.Customer.CustomerWorkspace;
+import ui.Customer.WelcomePage;
 import utils.NavigationUtils;
 
 /**
@@ -130,8 +131,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBranchManagerActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-        CustomerWorkspace csWork = new CustomerWorkspace(nv);
-        nv.showCard(csWork, "CustomerWorkspace");
+        WelcomePage cWelcome = new WelcomePage(nv);
+        nv.showCard(cWelcome, "WelcomePage");
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     /**

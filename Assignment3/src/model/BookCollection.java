@@ -27,8 +27,8 @@ public class BookCollection {
         return instance;
     }
     
-    public Book addNewBook(String name, Date registeredDate, Library library) {
-        Book b = new Book(name, registeredDate, library);
+    public Book addNewBook(String name, Date registeredDate, Library library, Author author, double price) {
+        Book b = new Book(name, registeredDate, library, author, price);
         allBooks.add(b);
         return b;
     }

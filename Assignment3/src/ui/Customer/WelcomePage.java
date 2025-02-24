@@ -4,17 +4,27 @@
  */
 package ui.Customer;
 
+import interfaces.IUserProfile;
+import javax.swing.JOptionPane;
+import model.Customer;
+import model.UserDirectory;
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
 public class WelcomePage extends javax.swing.JPanel {
 
+    NavigationUtils nv;
+    UserDirectory userList;
     /**
      * Creates new form WelcomePage
      */
-    public WelcomePage() {
+    public WelcomePage(NavigationUtils nv) {
         initComponents();
+        this.nv = nv;
+        this.userList = UserDirectory.getInstance();
     }
 
     /**
@@ -42,6 +52,11 @@ public class WelcomePage extends javax.swing.JPanel {
         lblPwd.setText("Password");
 
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -86,6 +101,44 @@ public class WelcomePage extends javax.swing.JPanel {
                 .addContainerGap(223, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String username = txtUsername.getText().trim();
+        String password = txtPwd.getText().trim();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Varify
+        IUserProfile user = userList.findUserByName(username);
+
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "User not found!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!(user instanceof Customer)) {
+            JOptionPane.showMessageDialog(this, "User is not a Customer!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Customer cs = (Customer) user;
+
+        if (!cs.getPwd().equals(password)) {
+            JOptionPane.showMessageDialog(this, "Incorrect password!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        CustomerWorkspace cWork = new CustomerWorkspace(nv, cs);     
+        nv.showCard(cWork, "CustomerWorkspace");
+
+        txtUsername.setText("");
+        txtPwd.setText("");
+    }//GEN-LAST:event_btnLoginActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
