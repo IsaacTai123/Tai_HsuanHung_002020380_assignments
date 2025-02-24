@@ -4,17 +4,34 @@
  */
 package ui.BranchManager;
 
+import interfaces.IDataRefreshCallback;
+import interfaces.IUserProfile;
+import javax.swing.table.DefaultTableModel;
+import model.Book;
+import model.BookCollection;
+import model.Library;
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
-public class ManageBooks extends javax.swing.JPanel {
+public class ManageBooks extends javax.swing.JPanel implements IDataRefreshCallback {
+    
+    NavigationUtils nv;
+    BookCollection allBooks;
+    Library selectedLib;
 
     /**
      * Creates new form ManageBooks
      */
-    public ManageBooks() {
+    public ManageBooks(NavigationUtils nv, Library selectedLib) {
         initComponents();
+        this.nv = nv;
+        this.allBooks = BookCollection.getInstance();
+        this.selectedLib = selectedLib;
+        loadLibraryName();
+        loadBooksTable();
     }
 
     /**
@@ -37,6 +54,11 @@ public class ManageBooks extends javax.swing.JPanel {
         txtBranchName = new javax.swing.JTextField();
 
         btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         tblBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,6 +95,11 @@ public class ManageBooks extends javax.swing.JPanel {
         lblTitle.setText("Manage Books");
 
         btnNewBook.setText("New Book");
+        btnNewBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewBookActionPerformed(evt);
+            }
+        });
 
         lblBranchName.setText("Branch Name: ");
 
@@ -98,7 +125,7 @@ public class ManageBooks extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblBranchName, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtBranchName, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtBranchName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,6 +150,14 @@ public class ManageBooks extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        nv.goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnNewBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewBookActionPerformed
+       
+    }//GEN-LAST:event_btnNewBookActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -135,4 +170,32 @@ public class ManageBooks extends javax.swing.JPanel {
     private javax.swing.JTable tblBooks;
     private javax.swing.JTextField txtBranchName;
     // End of variables declaration//GEN-END:variables
+
+    private void loadBooksTable() {
+        DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
+        model.setRowCount(0);
+        System.out.println(allBooks.getAllBooks().size());
+        
+        for (Book b : allBooks.getAllBooks()) {
+            Object[] row = new Object[4];
+            row[0] = b;
+            row[1] = b.getName();
+            row[2] = b.getRegisteredDate();           
+            row[3] = b.isIsAvailable() ? "Available" : "Unavailable";
+            
+            model.addRow(row);
+        }
+    }
+    
+    private void loadLibraryName() {
+        txtBranchName.setText(selectedLib.getName());
+        txtBranchName.setEditable(false);
+    }
+
+    @Override
+    public void refreshData() {
+        loadBooksTable();
+    }
+
+    
 }

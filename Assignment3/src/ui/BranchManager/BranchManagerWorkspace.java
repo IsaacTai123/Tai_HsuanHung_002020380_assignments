@@ -4,6 +4,7 @@
  */
 package ui.BranchManager;
 
+import model.Library;
 import utils.NavigationUtils;
 
 /**
@@ -13,13 +14,15 @@ import utils.NavigationUtils;
 public class BranchManagerWorkspace extends javax.swing.JPanel {
 
     NavigationUtils nv;
+    Library selectedLib;
     
     /**
      * Creates new form Workspace
      */
-    public BranchManagerWorkspace(NavigationUtils nv) {
+    public BranchManagerWorkspace(NavigationUtils nv, Library selectedLib) {
         initComponents();
         this.nv = nv;
+        this.selectedLib = selectedLib;
     }
 
     /**
@@ -42,6 +45,11 @@ public class BranchManagerWorkspace extends javax.swing.JPanel {
         lblTitle.setText("Branch Manager Workspace");
 
         btnManageBooks.setText("Manage Books");
+        btnManageBooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageBooksActionPerformed(evt);
+            }
+        });
 
         btnManageAuthors.setText("Manage Authors");
 
@@ -82,6 +90,11 @@ public class BranchManagerWorkspace extends javax.swing.JPanel {
                 .addContainerGap(289, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManageBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageBooksActionPerformed
+        ManageBooks mb = new ManageBooks(nv, selectedLib);
+        nv.showCard(mb, "ManageBooks");
+    }//GEN-LAST:event_btnManageBooksActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

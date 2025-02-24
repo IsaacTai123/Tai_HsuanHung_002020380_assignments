@@ -11,6 +11,7 @@ import model.UserDirectory;
 import org.w3c.dom.UserDataHandler;
 import ui.Admin.AdminWorkspace;
 import ui.BranchManager.BranchManagerWorkspace;
+import ui.BranchManager.ManagerLogin;
 import ui.Customer.CustomerWorkspace;
 import utils.NavigationUtils;
 
@@ -28,7 +29,6 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         nv = new NavigationUtils(WorkArea);
-        
     }
 
     /**
@@ -125,8 +125,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnBranchManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBranchManagerActionPerformed
-        BranchManagerWorkspace mngWork = new BranchManagerWorkspace(nv);     
-        nv.showCard(mngWork, "BranchMngWorkspace");
+        ManagerLogin mngLogin = new ManagerLogin(nv);
+        nv.showCard(mngLogin, "ManagerLogin");
     }//GEN-LAST:event_btnBranchManagerActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
@@ -183,4 +183,6 @@ public class MainJFrame extends javax.swing.JFrame {
         CardLayout ly = (CardLayout) WorkArea.getLayout();
         ly.next(WorkArea);
     }
+
+    
 }

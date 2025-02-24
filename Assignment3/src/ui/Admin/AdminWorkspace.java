@@ -4,6 +4,14 @@
  */
 package ui.Admin;
 
+import common.Role;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import model.AuthorDirectory;
+import model.BookCollection;
+import model.BranchManager;
+import model.EmployeeDirectory;
+import model.LibraryDirectory;
 import model.UserDirectory;
 import utils.NavigationUtils;
 
@@ -13,8 +21,12 @@ import utils.NavigationUtils;
  */
 public class AdminWorkspace extends javax.swing.JPanel {
     
-    
+    UserDirectory userList;
+    LibraryDirectory libList;
+    EmployeeDirectory emList;
+    BookCollection allBooks;
     NavigationUtils nv;
+    AuthorDirectory authorList;
     
 
     /**
@@ -23,6 +35,7 @@ public class AdminWorkspace extends javax.swing.JPanel {
     public AdminWorkspace(NavigationUtils nv) {
         initComponents();
         this.nv = nv;
+        fakeDataGenerator();
     }
 
     /**
@@ -97,4 +110,51 @@ public class AdminWorkspace extends javax.swing.JPanel {
     private javax.swing.JButton btnManageUserAccounts;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
+
+
+    private void fakeDataGenerator() {
+        try {
+            this.userList = UserDirectory.getInstance();
+            this.libList = LibraryDirectory.getInstance();
+            this.emList = EmployeeDirectory.getInstance();
+            this.allBooks = BookCollection.getInstance();
+            this.authorList = AuthorDirectory.getInstance();
+
+            // Branch Manager
+            BranchManager bm1 = userList.createBranchManager("Alice Johnson", "alicepwd", Role.BRANCH_MANAGER);
+            BranchManager bm2 = userList.createBranchManager("Bob Smith", "bobpwd", Role.BRANCH_MANAGER);
+
+            // Library
+            libList.addLibrary("Central Library", 101, bm1);
+            libList.addLibrary("Westside Library", 202, bm2);
+
+            // Admin
+            userList.createAdmin("AdminUser", "adminpwd", Role.ADMIN);
+
+            // Custom
+            userList.createCustomer("Tom Hanks", "tom123", Role.CUSTOMER);
+            userList.createCustomer("Emma Watson", "emma456", Role.CUSTOMER);
+            userList.createCustomer("Chris Evans", "chris789", Role.CUSTOMER);
+            
+            // Authors
+            authorList.addAuthor("J.K. Rowling", "UK");
+            authorList.addAuthor("George R.R. Martin", "USA");
+            authorList.addAuthor("Haruki Murakami", "Japan");
+            authorList.addAuthor("Jane Austen", "UK");
+            authorList.addAuthor("Stephen King", "USA");
+
+            // Books
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            allBooks.addNewBook("Harry Potter", sdf.parse("2024-01-01"), libList.getLibraryByName("Central Library"));
+            allBooks.addNewBook("Game of Thrones", sdf.parse("2024-01-02"), libList.getLibraryByName("Central Library"));
+            allBooks.addNewBook("Norwegian Wood", sdf.parse("2024-01-03"), libList.getLibraryByName("Westside Library"));
+            allBooks.addNewBook("Pride and Prejudice", sdf.parse("2024-01-04"), libList.getLibraryByName("Westside Library"));
+            allBooks.addNewBook("The Shining", sdf.parse("2024-01-05"), libList.getLibraryByName("Central Library"));
+            
+        } catch (Exception e) {
+            System.out.println("Error configuring system: " + e.getMessage());
+        }
+        
+    }
 }

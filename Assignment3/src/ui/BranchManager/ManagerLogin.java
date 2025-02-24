@@ -4,17 +4,33 @@
  */
 package ui.BranchManager;
 
+import interfaces.IUserProfile;
+import javax.swing.JOptionPane;
+import model.BranchManager;
+import model.Library;
+import model.LibraryDirectory;
+import model.UserDirectory;
+import utils.NavigationUtils;
+
 /**
  *
  * @author tisaac
  */
-public class ManagerWorkspace extends javax.swing.JPanel {
+public class ManagerLogin extends javax.swing.JPanel {
+    
+    LibraryDirectory libDir;
+    UserDirectory userList;
+    NavigationUtils nv;
 
     /**
      * Creates new form ManagerWorkspace
      */
-    public ManagerWorkspace() {
+    public ManagerLogin(NavigationUtils nv) {
         initComponents();
+        this.libDir = LibraryDirectory.getInstance();
+        this.userList = UserDirectory.getInstance();
+        this.nv = nv;
+        populateLibraryBranchs();
     }
 
     /**
@@ -41,11 +57,22 @@ public class ManagerWorkspace extends javax.swing.JPanel {
 
         lblLibraryBranch.setText("Check Your Library Branch");
 
+        cmbLibraryBranch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLibraryBranchActionPerformed(evt);
+            }
+        });
+
         lblUsername.setText("Username");
 
         lblPwd.setText("Password");
 
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,6 +128,58 @@ public class ManagerWorkspace extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbLibraryBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLibraryBranchActionPerformed
+        populateLibraryBranchs();
+    }//GEN-LAST:event_cmbLibraryBranchActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String username = txtUsername.getText().trim();
+        String password = txtPwd.getText().trim();
+        String selectedLibraryBranch = (String) cmbLibraryBranch.getSelectedItem();
+
+        if (username.isEmpty() || password.isEmpty() || selectedLibraryBranch == null) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Varify
+        IUserProfile user = userList.findUserByName(username);
+
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "User not found!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (!(user instanceof BranchManager)) {
+            JOptionPane.showMessageDialog(this, "User is not a Branch Manager!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        BranchManager branchManager = (BranchManager) user;
+
+        if (!branchManager.getPwd().equals(password)) {
+            JOptionPane.showMessageDialog(this, "Incorrect password!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Varify if the branch manager is responsible for this library
+        Library selectedLibrary = LibraryDirectory.getInstance().getLibraryByName(selectedLibraryBranch);
+
+        if (selectedLibrary == null || !selectedLibrary.getManager().equals(branchManager)) {
+            JOptionPane.showMessageDialog(this, "Branch Manager not associated with selected library!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+        BranchManagerWorkspace mngWork = new BranchManagerWorkspace(nv, selectedLibrary);     
+        nv.showCard(mngWork, "BranchMngWorkspace");
+
+        txtUsername.setText("");
+        txtPwd.setText("");
+        cmbLibraryBranch.setSelectedIndex(-1);
+    }//GEN-LAST:event_btnLoginActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
@@ -112,4 +191,13 @@ public class ManagerWorkspace extends javax.swing.JPanel {
     private javax.swing.JTextField txtPwd;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+
+    private void populateLibraryBranchs() {
+        cmbLibraryBranch.removeAllItems();
+
+        for (Library l : libDir.getAllLibraries()) { 
+            cmbLibraryBranch.addItem(l.getName());
+        }
+    }
 }

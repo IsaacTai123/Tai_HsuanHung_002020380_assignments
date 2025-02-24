@@ -18,13 +18,18 @@ public class BranchManager extends UserProfile {
     private String experience;
     
     
-    public BranchManager(String name, String pwd, Role role) {
+    public BranchManager(String name, String pwd, Role role, String experience) {
         super(name, pwd, role);
         this.employeeID = generateEmployeeID();
+        this.experience = experience;
+    }
+    
+    public BranchManager(String name, String pwd, Role role) {
+        this(name, pwd, role, "");
     }
     
     public BranchManager() {
-        this("", "", null);
+        this("", "", null, "");
     }
     
     private static String generateEmployeeID() {

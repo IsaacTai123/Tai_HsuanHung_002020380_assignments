@@ -14,7 +14,7 @@ public class Library {
     private String name;
     private int buildingNo;
     private BranchManager manager;
-    private BookCollection bookCollection;
+//    private BookCollection bookCollection;
     
     public Library(String name, int buildingNo, BranchManager manager) {
         this.name = name;
@@ -45,13 +45,9 @@ public class Library {
     public void setManager(BranchManager manager) {
         this.manager = manager;
     }
-
-    public BookCollection getBookCollection() {
-        return bookCollection;
-    }
     
-    public void setBookCollection(BookCollection bookCollection) {
-        this.bookCollection = bookCollection;
+    public ArrayList<Book> getBooks(BookCollection bookCollection) {
+        return bookCollection.getBooksByLibrary(this);
     }
 
     @Override

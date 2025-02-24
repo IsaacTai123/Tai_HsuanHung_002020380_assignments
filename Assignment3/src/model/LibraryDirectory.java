@@ -13,10 +13,10 @@ import java.util.ArrayList;
 public class LibraryDirectory {
     
     private static LibraryDirectory instance;
-    private ArrayList<Library> libraries;
+    private ArrayList<Library> libList;
 
     private LibraryDirectory() {
-        libraries = new ArrayList<>();
+        libList = new ArrayList<>();
     }
     
     public static synchronized LibraryDirectory getInstance() {
@@ -28,20 +28,20 @@ public class LibraryDirectory {
 
     public Library addLibrary(String name, int buildingNo, BranchManager manager) {
         Library l = new Library(name, buildingNo, manager);
-        libraries.add(l);
+        libList.add(l);
         return l;
     }
 
     public void removeLibrary(Library library) {
-        libraries.remove(library);
+        libList.remove(library);
     }
 
     public ArrayList<Library> getAllLibraries() {
-        return libraries;
+        return libList;
     }
 
     public Library getLibraryByName(String name) {
-        for (Library lib : libraries) {
+        for (Library lib : libList) {
             if (lib.getName().equalsIgnoreCase(name)) {
                 return lib;
             }
